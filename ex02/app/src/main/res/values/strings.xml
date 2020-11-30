@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">18121772_LiJiaQi_Week02</string>
+    <string-array name="gender_choose">
+        <item>选择性别</item>
+        <item>男性</item>
+        <item>女性</item>
+        <item>保密</item>
+    </string-array>
+    <string-array name="spec_choose">
+        <item>选择研究方向</item>
+        <item>移动计算</item>
+        <item>计算机图形学</item>
+    </string-array>
+</resources>

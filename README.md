@@ -9,7 +9,7 @@ For details, please check each folder or specific branches <br />
 ![status](https://img.shields.io/badge/status-still%20working-yellowgreen)
 
 [ex02](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex02) (due 12.10) <br />
-![status](https://img.shields.io/badge/status-pending-lightgrey)
+![status](https://img.shields.io/badge/status-still%20working-yellowgreen)
 
 [ex03](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex03) (due 12.17) <br />
 ![status](https://img.shields.io/badge/status-pending-lightgrey)
