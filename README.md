@@ -12,7 +12,7 @@ For details, please check each folder or specific branches <br />
 ![status](https://img.shields.io/badge/status-still%20working-yellowgreen)
 
 [ex03](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex03) (due 12.17) <br />
-![status](https://img.shields.io/badge/status-pending-lightgrey)
+![status](https://img.shields.io/badge/status-working(1%2F2)-yellow)
 
 #### ex04-05 Personal Work (Java)
 
@@ -39,4 +39,4 @@ For details, please check each folder or specific branches <br />
 #### ex10 Final Team Work
 
 [ex10](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex04) (due 21.3.11) <br />
-![status](https://img.shields.io/badge/status-slow%20process-orange)
+![status](https://img.shields.io/badge/status-slow%20progress-orange)
