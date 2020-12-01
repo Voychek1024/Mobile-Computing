@@ -17,10 +17,10 @@ For details, please check each folder or specific branches <br />
 #### ex04-05 Personal Work (Java)
 
 [ex04](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex04) (due 12.24) <br />
-![status](https://img.shields.io/badge/status-pending-lightgrey)
+![status](https://img.shields.io/badge/status-working(0%2F4)-yellow)
 
 [ex05](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex05) (due 12.31) <br />
-![status](https://img.shields.io/badge/status-pending-lightgrey)
+![status](https://img.shields.io/badge/status-working-yellow)
 
 #### ex06-09 Team Work (MC Development)
 
