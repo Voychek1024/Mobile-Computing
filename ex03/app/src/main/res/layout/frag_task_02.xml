@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment" >
+    tools:context=".ui.dashboard.T02_Fragment" >
 
     <TextView
         android:id="@+id/text_dashboard"
@@ -38,10 +38,10 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="60dp"
-        android:layout_height="20dp"
+        android:layout_height="40dp"
         android:text="CAL"
         android:textAlignment="center"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.307"
@@ -54,7 +54,8 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:ems="10"
-        android:inputType="numberSigned"
+        android:inputType="number"
+        android:hint="int_2"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.052"
@@ -67,7 +68,8 @@
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:ems="10"
-        android:inputType="numberSigned"
+        android:inputType="number"
+        android:hint="int_1"
         app:layout_constraintBottom_toBottomOf="@+id/textView2"
         app:layout_constraintEnd_toStartOf="@+id/textView2"
         app:layout_constraintHorizontal_bias="0.75"
