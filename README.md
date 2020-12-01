@@ -6,13 +6,13 @@ For details, please check each folder or specific branches <br />
 
 #### ex01-03 Personal Work (Android Studio)
 [ex01](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex01) (due 12.3) <br />
-![status](https://img.shields.io/badge/status-still%20working-yellowgreen)
+![status](https://img.shields.io/badge/status-report--pending-blue)
 
 [ex02](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex02) (due 12.10) <br />
-![status](https://img.shields.io/badge/status-still%20working-yellowgreen)
+![status](https://img.shields.io/badge/status-report--pending-blue)
 
 [ex03](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex03) (due 12.17) <br />
-![status](https://img.shields.io/badge/status-working(1%2F2)-yellow)
+![status](https://img.shields.io/badge/status-report--pending-blue)
 
 #### ex04-05 Personal Work (Java)
 
