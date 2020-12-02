@@ -1,10 +1,10 @@
 public class MobileShop {
-    // TODO: declare purchaseMoney1 with InnerPurchaseMoney
-    // TODO: declare purchaseMoney2 with InnerPurchaseMoney
+    InnerPurchaseMoney purchaseMoney1; // TODO: declare purchaseMoney1 with InnerPurchaseMoney
+    InnerPurchaseMoney purchaseMoney2; // TODO: declare purchaseMoney2 with InnerPurchaseMoney
     private int mobileAmount;
     MobileShop() {
-        // TODO: purchaseMoney1 = 20000;
-        // TODO: purchaseMoney2 = 10000;
+        purchaseMoney1 = new InnerPurchaseMoney(20000); // TODO: purchaseMoney1 = 20000;
+        purchaseMoney2 = new InnerPurchaseMoney(10000); // TODO: purchaseMoney2 = 10000;
     }
     void setMobileAmount(int m) {
         mobileAmount = m;

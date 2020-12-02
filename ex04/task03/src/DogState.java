@@ -12,21 +12,21 @@ class SoftlyState implements DogState {
 class MeetEnemyState implements DogState {
     @Override
     public void showState() {
-        // TODO: REWRITE showState method
+        System.out.println("Meet Enemy State"); // TODO: REWRITE showState method
     }
 }
 
 class MeetFriendState implements DogState {
     @Override
     public void showState() {
-        // TODO: REWRITE showState method
+        System.out.println("Meet Friend State"); // TODO: REWRITE showState method
     }
 }
 
 class MeetAnotherDog implements DogState {
     @Override
     public void showState() {
-        // TODO: REWRITE showState method
+        System.out.println("Meet Another Dog State"); // TODO: REWRITE showState method
     }
 }
 
@@ -43,16 +43,16 @@ class Dog {
 class CheckDogState {
     public static void main(String[] args) {
         Dog yellowDog = new Dog();
-        System.out.print("Dog ahead of master");
+        System.out.print("Dog ahead of master: ");
         yellowDog.setState(new SoftlyState());
         yellowDog.show();
-        System.out.print("Dog meets enemy");
+        System.out.print("Dog meets enemy: ");
         yellowDog.setState(new MeetEnemyState());
         yellowDog.show();
-        System.out.print("Dog meets friend");
+        System.out.print("Dog meets friend: ");
         yellowDog.setState(new MeetFriendState());
         yellowDog.show();
-        System.out.print("Dog meets dog");
+        System.out.print("Dog meets dog: ");
         yellowDog.setState(new MeetAnotherDog());
         yellowDog.show();
     }

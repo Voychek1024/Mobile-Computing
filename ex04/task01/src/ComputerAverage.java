@@ -30,7 +30,13 @@ class Gymnastics implements ComputerAverage {
 class School implements ComputerAverage {
     public double average(double[] x) {
         // TODO: REWRITE method
-        return 0;
+        int count = x.length;
+        double aver = 0;
+        for (double v : x) {
+            aver += v;
+        }
+        aver /= count;
+        return aver;
     }
 }
 
@@ -40,12 +46,12 @@ class Estimator {
         double b[] = {89, 56, 78, 90, 100, 77, 56, 45, 36, 79, 98};
         ComputerAverage computer;
         computer = new Gymnastics();
-        double result = 1;  // TODO: call average method and pass a[] to x
+        double result = computer.average(a); // TODO: call average method and pass a[] to x
         System.out.printf("%n");
-        System.out.printf("体操选手最后得分:%5.3f\n", result);
+        System.out.printf("体操选手最后得分: %5.3f\n", result);
         computer = new School();
-        result = 2;// TODO: call average method and pass b[] to x
-        System.out.printf("班级考试平均分数:%-5.2f\n", result);
+        result = computer.average(b); // TODO: call average method and pass b[] to x
+        System.out.printf("班级考试平均分数: %-5.2f\n", result);
     }
 }
 
