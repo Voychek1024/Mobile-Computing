@@ -20,7 +20,7 @@ For details, please check each folder or specific branches <br />
 ![status](https://img.shields.io/badge/status-working(0%2F4)-yellow)
 
 [ex05](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex05) (due 12.31) <br />
-![status](https://img.shields.io/badge/status-working(1%2F5)-yellow)
+![status](https://img.shields.io/badge/status-report--pending-blue)
 
 #### ex06-09 Team Work (MC Development)
 

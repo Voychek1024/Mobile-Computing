@@ -12,7 +12,7 @@ public class Village {
     void drinkWater(int n) {
         if (waterAmount - n >= 0) {
             waterAmount = waterAmount - n;
-            System.out.println(name + "drunk" + n + "Liters");
+            System.out.println(name + " drunk " + n + " Liters.");
         }
         else
             waterAmount = 0;

@@ -5,7 +5,7 @@ import javax.swing.*;
 public class LetterLabel extends JTextField implements FocusListener {
     LetterLabel() {
         setEditable(false);
-        // TODO: register this to self FOCUS
+        addFocusListener(this); // TODO: register this to self FOCUS
         setBackground(Color.WHITE);
         setFont(new Font("Arial", Font.PLAIN, 30));
     }

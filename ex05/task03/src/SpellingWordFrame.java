@@ -44,7 +44,7 @@ public class SpellingWordFrame extends JFrame implements KeyListener, ActionList
             for (int k = 0; k < label.length; k++) {
                 label[k].setText("" + randomWord.charAt(k));
                 wordBox.add(label[k]);
-                // TODO: 将当前窗口注册为label[k]的键盘监视器
+                label[k].addKeyListener(this); // TODO: 将当前窗口注册为label[k]的键盘监视器
             }
                 validate();
                 input_word.setText(null);
@@ -67,7 +67,7 @@ public class SpellingWordFrame extends JFrame implements KeyListener, ActionList
                 }
             }
             if (index != 0) {
-                String temp = label[index - 1].getText();
+                String temp = label[index].getText();
                 label[index].setText(label[index - 1].getText());
                 label[index - 1].setText(temp);
                 label[index - 1].requestFocus();
@@ -82,7 +82,7 @@ public class SpellingWordFrame extends JFrame implements KeyListener, ActionList
             }
             if (index != label.length - 1) {
                 String temp = label[index].getText();
-                label[index].setText(label[index - 1].getText());
+                label[index].setText(label[index + 1].getText());
                 label[index + 1].setText(temp);
                 label[index + 1].requestFocus();
             }

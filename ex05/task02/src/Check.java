@@ -17,10 +17,10 @@ public class Check {
         for (Goods good : goods) {
             try {
                 machine.checkDanger(good);
-                System.out.println(good.getName() + "passed");
+                System.out.println(good.getName() + "\tpassed\n");
             } catch (DangerException e) {
-                // TODO: e calls toShow() method
-                System.out.println(good.getName() + "banned");
+                e.toShow(); // TODO: e calls toShow() method
+                System.out.println(good.getName() + "\tbanned\n");
             }
         }
     }

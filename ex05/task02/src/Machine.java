@@ -1,11 +1,11 @@
 public class Machine {
     public void checkDanger (Goods goods) throws DangerException {
         if(goods.isDanger()) {
-            DangerException danger = new DangerException();
-            // TODO: throw danger
+            System.out.print(goods.getName() + "\t");
+            throw new DangerException(); // TODO: throw danger
         }
         else {
-            System.out.print(goods.getName() + "NOT DANGEROUS");
+            System.out.println(goods.getName() + "\tNOT DANGEROUS");
         }
     }
 }

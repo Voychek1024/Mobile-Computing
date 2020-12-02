@@ -4,6 +4,6 @@ public class DangerException extends Exception {
         message = "DANGEROUS!";
     }
     public void toShow() {
-        System.out.print(message + " ");
+        System.out.println(message + " ");
     }
 }
