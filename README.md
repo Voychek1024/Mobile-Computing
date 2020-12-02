@@ -6,7 +6,7 @@ For details, please check each folder or specific branches <br />
 
 #### ex01-03 Personal Work (Android Studio)
 [ex01](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex01) (due 12.3) <br />
-![status](https://img.shields.io/badge/status-report--pending-blue)
+![status](https://img.shields.io/badge/status-completed-%23008080)
 
 [ex02](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex02) (due 12.10) <br />
 ![status](https://img.shields.io/badge/status-report--pending-blue)
