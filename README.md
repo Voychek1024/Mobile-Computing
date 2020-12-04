@@ -22,10 +22,10 @@ For details, please check each folder or specific branches <br />
 [ex05](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex05) (due 12.31) <br />
 ![status](https://img.shields.io/badge/status-report--pending-blue)
 
-#### ex06-09 Team Work (MC Development)
+#### ex06-09 Personal Work  (Android Studio)
 
 [ex06](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex04) (due 21.1.7) <br />
-![status](https://img.shields.io/badge/status-pending-purple)
+![status](https://img.shields.io/badge/status-working(1%2F2)-yellow)
 
 [ex07](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex05) (due 21.1.14) <br />
 ![status](https://img.shields.io/badge/status-pending-lightgrey)
@@ -36,7 +36,7 @@ For details, please check each folder or specific branches <br />
 [ex09](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex05) (due 21.3.4) <br />
 ![status](https://img.shields.io/badge/status-pending-lightgrey)
 
-#### ex10 Final Team Work
+#### ex10 Final Team Work  (Android Studio)
 
 [ex10](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex04) (due 21.3.11) <br />
 ![status](https://img.shields.io/badge/status-slow%20progress-orange)

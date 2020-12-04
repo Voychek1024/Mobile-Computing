@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">18121772_LiJiaQi_Week06</string>
+    <string name="random_city">Random City</string>
+    <string name="demo">DEMO</string>
+    <string-array name="city_choice">
+        <item>选择城市</item>
+        <item>Shanghai</item>
+        <item>Guangzhou</item>
+        <item>Beijing</item>
+        <item>Shenzhen</item>
+        <item>Wuhan</item>
+        <item>Chengdu</item>
+        <item>Chongqing</item>
+        <item>Tianjin</item>
+    </string-array>
+    <string-array name="city_random">
+        <item>Shanghai</item>
+        <item>Guangzhou</item>
+        <item>Beijing</item>
+        <item>Shenzhen</item>
+        <item>Wuhan</item>
+        <item>Chengdu</item>
+        <item>Chongqing</item>
+        <item>Tianjin</item>
+    </string-array>
+</resources>
