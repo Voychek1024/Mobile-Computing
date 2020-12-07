@@ -28,7 +28,7 @@ For details, please check each folder or specific branches <br />
 ![status](https://img.shields.io/badge/status-report--pending-blue)
 
 [ex07]() (due 21.1.14) <br />
-![status](https://img.shields.io/badge/status-working-yellow)
+![status](https://img.shields.io/badge/status-working(1%2F4)-yellow)
 
 [ex08]() (due 21.1.21) <br />
 ![status](https://img.shields.io/badge/status-pending-lightgrey)
