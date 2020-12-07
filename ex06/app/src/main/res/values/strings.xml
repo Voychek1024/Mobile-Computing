@@ -2,6 +2,11 @@
     <string name="app_name">18121772_LiJiaQi_Week06</string>
     <string name="random_city">Random City</string>
     <string name="demo">DEMO</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_email">Email</string>
+    <string name="memorize_code">记住密码</string>
+    <string name="prompt_login">登录</string>
+    <string name="prompt_forget_pwd">忘记密码</string>
     <string-array name="city_choice">
         <item>选择城市</item>
         <item>Shanghai</item>
@@ -22,5 +27,9 @@
         <item>Chengdu</item>
         <item>Chongqing</item>
         <item>Tianjin</item>
+    </string-array>
+    <string-array name="find_pwd_choice">
+        <item>发送验证码至手机</item>
+        <item>发送验证码至邮箱</item>
     </string-array>
 </resources>

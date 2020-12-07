@@ -25,10 +25,10 @@ For details, please check each folder or specific branches <br />
 #### ex06-09 Personal Work  (Android Studio)
 
 [ex06](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex06) (due 21.1.7) <br />
-![status](https://img.shields.io/badge/status-working(1%2F2)-yellow)
+![status](https://img.shields.io/badge/status-report--pending-blue)
 
 [ex07]() (due 21.1.14) <br />
-![status](https://img.shields.io/badge/status-pending-lightgrey)
+![status](https://img.shields.io/badge/status-working-yellow)
 
 [ex08]() (due 21.1.21) <br />
 ![status](https://img.shields.io/badge/status-pending-lightgrey)

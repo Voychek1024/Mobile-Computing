@@ -26,4 +26,4 @@ Personal Work (Android Studio)
 
 - [x] 实验6-1
 - [x] 实验6-2
-- [ ] 实验6-3
+- [x] 实验6-3
