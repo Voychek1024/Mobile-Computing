@@ -17,6 +17,6 @@ Personal Work (Android Studio)
 ## 进度
 
 - [x] UI设计
-- [ ] 逻辑连接
-- [ ] 算式合法性判断
-- [ ] Debug
+- [x] 逻辑连接
+- [x] 算式合法性判断
+- [x] Debug
