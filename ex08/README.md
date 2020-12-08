@@ -15,6 +15,6 @@ Personal Work (Android Studio)
 ## 进度
 
 - [x] UI设计
-- [ ] Fragment通信，RecyclerView操作
+- [x] Fragment通信
 - [ ] 安卓存储攻关
 - [ ] Debug

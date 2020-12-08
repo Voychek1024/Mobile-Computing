@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">18121772_LiJiaQi_Week08</string>
+    <string-array name="list_item_show">
+        <item>NEWS1</item>
+        <item>NEWS2</item>
+        <item>NEWS3</item>
+        <item>NEWS4</item>
+        <item>NEWS5</item>
+        <item>NEWS6</item>
+        <item>NEWS7</item>
+        <item>NEWS8</item>
+        <item>NEWS9</item>
+        <item>NEWS10</item>
+    </string-array>
 </resources>
