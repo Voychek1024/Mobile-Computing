@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Clicked Login", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "Register Page", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(v.getContext(), Registeration.class);
                 v.getContext().startActivity(intent);
             }

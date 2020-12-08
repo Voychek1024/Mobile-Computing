@@ -6,7 +6,7 @@
     <string name="view_name">姓名</string>
     <string name="view_stu_number">学号</string>
     <string name="view_gender">性别</string>
-    <string name="view_birthday">生日</string>
+    <string name="view_age">年龄</string>
     <string name="view_profession">专业</string>
     <string name="view_hobby">爱好</string>
     <string name="view_page_title">注册表单</string>

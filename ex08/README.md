@@ -17,6 +17,6 @@ Personal Work (Android Studio)
 - [x] UI设计
 - [x] Fragment通信
 - [x] Activity转换
-- [ ] 逻辑连接 
-- [ ] 安卓存储攻关
-- [ ] Debug
+- [x] 逻辑连接 
+- [x] 安卓存储攻关
+- [x] Debug
