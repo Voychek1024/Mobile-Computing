@@ -31,12 +31,12 @@ For details, please check each folder or specific branches <br />
 ![status](https://img.shields.io/badge/status-report--pending-blue)
 
 [ex08](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex08) (due 21.1.21) <br />
-![status](https://img.shields.io/badge/status-working(1%2F4)-yellow)
+![status](https://img.shields.io/badge/status-working(3%2F4)-yellow)
 
-[ex09]() (due 21.3.4) <br />
+[ex09](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex09) (due 21.3.4) <br />
 ![status](https://img.shields.io/badge/status-pending-lightgrey)
 
 #### ex10 Final Team Work  (Android Studio)
 
-[ex10]() (due 21.3.11) <br />
+[ex10](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex10) (due 21.3.11) <br />
 ![status](https://img.shields.io/badge/status-slow%20progress-orange)
