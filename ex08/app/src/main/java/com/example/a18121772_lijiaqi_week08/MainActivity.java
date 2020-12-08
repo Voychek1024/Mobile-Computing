@@ -1,6 +1,7 @@
 package com.example.a18121772_lijiaqi_week08;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +36,15 @@ public class MainActivity extends AppCompatActivity {
                 // Toast.makeText(getBaseContext(), string, Toast.LENGTH_LONG).show();
                 textView_title.setText("NEWS" + string);
                 textView_content.setText("This is the content of NEWS" + string);
+            }
+        });
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Clicked Login", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(), Registeration.class);
+                v.getContext().startActivity(intent);
             }
         });
     }

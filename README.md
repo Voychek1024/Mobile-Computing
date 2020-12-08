@@ -31,7 +31,7 @@ For details, please check each folder or specific branches <br />
 ![status](https://img.shields.io/badge/status-report--pending-blue)
 
 [ex08](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex08) (due 21.1.21) <br />
-![status](https://img.shields.io/badge/status-working(3%2F4)-yellow)
+![status](https://img.shields.io/badge/status-working(4%2F5)-yellow)
 
 [ex09](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex09) (due 21.3.4) <br />
 ![status](https://img.shields.io/badge/status-pending-lightgrey)

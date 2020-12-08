@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">18121772_LiJiaQi_Week08</string>
+    <string name="prompt_login">login</string>
+    <string name="insert_name">在此处输入姓名</string>
+    <string name="insert_stu_number">在此处输入学号</string>
+    <string name="view_name">姓名</string>
+    <string name="view_stu_number">学号</string>
+    <string name="view_gender">性别</string>
+    <string name="view_birthday">生日</string>
+    <string name="view_profession">专业</string>
+    <string name="view_hobby">爱好</string>
+    <string name="view_page_title">注册表单</string>
+    <string name="prompt_submit">提交</string>
+    <string name="prompt_cancel">取消</string>
     <string-array name="list_item_show">
         <item>NEWS1</item>
         <item>NEWS2</item>
@@ -11,5 +23,18 @@
         <item>NEWS8</item>
         <item>NEWS9</item>
         <item>NEWS10</item>
+    </string-array>
+    <string-array name="gender_choice">
+        <item>请选择性别</item>
+        <item>男性</item>
+        <item>女性</item>
+    </string-array>
+    <string-array name="profession_choice">
+        <item>请选择专业</item>
+        <item>计算机科学与技术</item>
+        <item>智能科学与技术</item>
+        <item>网络安全与技术</item>
+        <item>人工智能</item>
+        <item>应用数学</item>
     </string-array>
 </resources>
