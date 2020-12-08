@@ -27,11 +27,11 @@ For details, please check each folder or specific branches <br />
 [ex06](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex06) (due 21.1.7) <br />
 ![status](https://img.shields.io/badge/status-report--pending-blue)
 
-[ex07]() (due 21.1.14) <br />
+[ex07](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex07) (due 21.1.14) <br />
 ![status](https://img.shields.io/badge/status-report--pending-blue)
 
-[ex08]() (due 21.1.21) <br />
-![status](https://img.shields.io/badge/status-working(3%2F4)-yellow)
+[ex08](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex08) (due 21.1.21) <br />
+![status](https://img.shields.io/badge/status-working(1%2F4)-yellow)
 
 [ex09]() (due 21.3.4) <br />
 ![status](https://img.shields.io/badge/status-pending-lightgrey)
