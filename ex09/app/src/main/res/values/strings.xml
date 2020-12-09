@@ -10,4 +10,21 @@
     <string name="hint_password">Enter PWD Here</string>
     <string name="view_title">Login Page</string>
     <string name="prompt_register">Register</string>
+    <string name="view_form">Account Info Page</string>
+    <string name="view_nickname">Nickname</string>
+    <string name="view_gender">Gender</string>
+    <string name="view_age">Age</string>
+    <string name="view_hobby">Hobby</string>
+    <string name="view_account_info">Account</string>
+    <string name="edit_nickname">Enter Nickname Here</string>
+    <string name="edit_hobby">Enter Hobby Here</string>
+    <string name="prompt_action">Action</string>
+    <string name="prompt_submit">Submit</string>
+    <string name="prompt_update">Update</string>
+    <string name="prompt_return">Return</string>
+    <string-array name="gender_choice">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

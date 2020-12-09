@@ -58,12 +58,15 @@ public class Task01_Fragment extends Fragment {
                 if (acc_validator(acc, pwd)) {
                     Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(v.getContext(), Data_Form.class);
+                    intent.putExtra("Status","1");
+                    intent.putExtra("current_acc",acc);
                     v.getContext().startActivity(intent);
                 }
                 else
                     Toast.makeText(getContext(), "CHK Login Table", Toast.LENGTH_SHORT).show();
             }
         });
+
         button_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,6 +74,8 @@ public class Task01_Fragment extends Fragment {
                 String pwd = editText_password.getText().toString();
                 if (register(acc, pwd)) {
                     Intent intent = new Intent(v.getContext(), Data_Form.class);
+                    intent.putExtra("Status","0");
+                    intent.putExtra("current_acc",acc);
                     v.getContext().startActivity(intent);
                 }
             }
@@ -107,7 +112,13 @@ public class Task01_Fragment extends Fragment {
     private boolean register(String ac, String pw) {
         if (reg_validator(ac, pw)) {
             SharedPreferences.Editor editor = getContext().getSharedPreferences("Account_Storage", Context.MODE_PRIVATE).edit();
+            SharedPreferences pref = getContext().getSharedPreferences("Account_Storage", Context.MODE_PRIVATE);
             String pwd_stamp = "Pwd_" + ac;
+            String pw_check = pref.getString(pwd_stamp, "");
+            if (!pw_check.equals("")) {
+                Toast.makeText(getContext(), "CHK Register Table", Toast.LENGTH_SHORT).show();
+                return false;
+            }
             String pw_write = getMD5(pw);
             editor.putString(pwd_stamp, pw_write);
             editor.apply();
