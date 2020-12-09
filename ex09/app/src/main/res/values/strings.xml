@@ -3,4 +3,11 @@
     <string name="title_task01">Task01</string>
     <string name="title_task02">Task02</string>
     <string name="title_task03">Task03</string>
+    <string name="view_account">Account</string>
+    <string name="view_password">Password</string>
+    <string name="prompt_login">Login</string>
+    <string name="hint_account">Enter Acc Here</string>
+    <string name="hint_password">Enter PWD Here</string>
+    <string name="view_title">Login Page</string>
+    <string name="prompt_register">Register</string>
 </resources>

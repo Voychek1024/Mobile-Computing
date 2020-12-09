@@ -1,4 +1,4 @@
-package com.example.a18121772_lijiaqi_week09.ui.Task01;
+package com.example.a18121772_lijiaqi_week09.tasks.Task03;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.a18121772_lijiaqi_week09.R;
 
-public class Task01_Fragment extends Fragment {
+public class Task03_Fragment extends Fragment {
 
-    private Task01_ViewModel task01ViewModel;
+    private Task03_ViewModel task03ViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        task01ViewModel =
-                new ViewModelProvider(this).get(Task01_ViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_task01, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        task01ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        task03ViewModel =
+                new ViewModelProvider(this).get(Task03_ViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_task03, container, false);
+        final TextView textView = root.findViewById(R.id.text_notifications);
+        task03ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -1,4 +1,4 @@
-package com.example.a18121772_lijiaqi_week09.ui.Task01;
+package com.example.a18121772_lijiaqi_week09.tasks.Task01;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,7 +10,7 @@ public class Task01_ViewModel extends ViewModel {
 
     public Task01_ViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is TASK_01");
+        mText.setValue("Task01: SharedPreferences Test");
     }
 
     public LiveData<String> getText() {

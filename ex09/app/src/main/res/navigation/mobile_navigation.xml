@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_task01"
-        android:name="com.example.a18121772_lijiaqi_week09.ui.Task01.Task01_Fragment"
+        android:name="com.example.a18121772_lijiaqi_week09.tasks.Task01.Task01_Fragment"
         android:label="@string/title_task01"
         tools:layout="@layout/fragment_task01" />
 
     <fragment
         android:id="@+id/navigation_task02"
-        android:name="com.example.a18121772_lijiaqi_week09.ui.Task02.Task02_Fragment"
+        android:name="com.example.a18121772_lijiaqi_week09.tasks.Task02.Task02_Fragment"
         android:label="@string/title_task02"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_task02" />
 
     <fragment
         android:id="@+id/navigation_task03"
-        android:name="com.example.a18121772_lijiaqi_week09.ui.Task03.Task03_Fragment"
+        android:name="com.example.a18121772_lijiaqi_week09.tasks.Task03.Task03_Fragment"
         android:label="@string/title_task03"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_task03" />
 </navigation>
