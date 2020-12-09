@@ -58,6 +58,8 @@ public class Data_Form extends AppCompatActivity {
         String stat = intent.getStringExtra("Status");
 
         if (stat.equals("0")) {
+            account = intent.getStringExtra("current_acc");
+            view_account.setText(account);
             button_act.setText(R.string.prompt_submit);
         }
         else {
