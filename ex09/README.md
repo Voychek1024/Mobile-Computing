@@ -21,9 +21,9 @@ Personal Work (Android Studio)
 ## 进度
 
 - [x] UI设计 1
-- [ ] UI设计 2
+- [x] UI设计 2
 - [ ] UI设计 3
 - [x] SharedPreferences攻关
-- [ ] XML解析攻关
+- [x] XML解析攻关
 - [ ] SQLite攻关
 - [ ] Debug

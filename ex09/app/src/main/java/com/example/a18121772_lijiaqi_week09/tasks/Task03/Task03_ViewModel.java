@@ -10,7 +10,7 @@ public class Task03_ViewModel extends ViewModel {
 
     public Task03_ViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is TASK_03");
+        mText.setValue("Task03: SQLite Test");
     }
 
     public LiveData<String> getText() {

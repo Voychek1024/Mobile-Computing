@@ -1,6 +1,5 @@
 package com.example.a18121772_lijiaqi_week09.tasks.Task01;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,8 +24,6 @@ import com.example.a18121772_lijiaqi_week09.R;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 public class Task01_Fragment extends Fragment {
     public static final String DATE_FORMAT = "yyyy_mm_dd_HH_mm_ss";
@@ -36,7 +33,7 @@ public class Task01_Fragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         Task01_ViewModel task01ViewModel = new ViewModelProvider(this).get(Task01_ViewModel.class);
         View root = inflater.inflate(R.layout.fragment_task01, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
+        final TextView textView = root.findViewById(R.id.text_task01);
         task01ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {

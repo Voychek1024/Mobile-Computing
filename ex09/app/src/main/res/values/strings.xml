@@ -22,6 +22,8 @@
     <string name="prompt_submit">Submit</string>
     <string name="prompt_update">Update</string>
     <string name="prompt_return">Return</string>
+    <string name="prompt_pull_xml">Pull XML</string>
+    <string name="view_hint">PUSH BUTTON TO START</string>
     <string-array name="gender_choice">
         <item>Select Gender</item>
         <item>Male</item>
