@@ -25,5 +25,5 @@ Personal Work (Android Studio)
 - [x] UI设计 3
 - [x] SharedPreferences攻关
 - [x] XML解析攻关
-- [ ] SQLite攻关
-- [ ] Debug
+- [x] SQLite攻关
+- [x] Debug
