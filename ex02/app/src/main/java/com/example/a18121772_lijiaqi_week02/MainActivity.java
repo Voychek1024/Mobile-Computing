@@ -13,16 +13,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter_1 = ArrayAdapter.createFromResource(this,
+        Spinner spinner_gen = (Spinner) findViewById(R.id.spinner_gender);
+        ArrayAdapter<CharSequence> adapter_gen = ArrayAdapter.createFromResource(this,
                 R.array.gender_choose, R.layout.support_simple_spinner_dropdown_item);
-        adapter_1.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter_1);
+        adapter_gen.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner_gen.setAdapter(adapter_gen);
 
-        Spinner spinner_3 = (Spinner) findViewById(R.id.spinner3);
-        ArrayAdapter<CharSequence> adapter_2 = ArrayAdapter.createFromResource(this,
+        Spinner spinner_pro = (Spinner) findViewById(R.id.spinner_profession);
+        ArrayAdapter<CharSequence> adapter_pro = ArrayAdapter.createFromResource(this,
                 R.array.spec_choose, R.layout.support_simple_spinner_dropdown_item);
-        adapter_2.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinner_3.setAdapter(adapter_2);
+        adapter_pro.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner_pro.setAdapter(adapter_pro);
+        adapter_gen.notifyDataSetChanged();
     }
 }
