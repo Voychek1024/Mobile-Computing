@@ -22,7 +22,7 @@ Personal Work (Android Studio)
 
 - [x] UI设计 1
 - [x] UI设计 2
-- [ ] UI设计 3
+- [x] UI设计 3
 - [x] SharedPreferences攻关
 - [x] XML解析攻关
 - [ ] SQLite攻关
