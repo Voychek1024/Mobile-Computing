@@ -55,14 +55,10 @@ public class Task03_Fragment extends Fragment {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
         Button button_update = (Button) root.findViewById(R.id.button_update);
         Button button_show = (Button) root.findViewById(R.id.button_show);
