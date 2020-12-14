@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_studio">
+
+    <fragment
+        android:id="@+id/navigation_studio"
+        android:name="com.shu_mc_03.illusion.ui.studio.Studio_Fragment"
+        android:label="@string/title_studio"
+        tools:layout="@layout/fragment_studio" />
+
+    <fragment
+        android:id="@+id/navigation_share"
+        android:name="com.shu_mc_03.illusion.ui.share.Share_Fragment"
+        android:label="@string/title_share"
+        tools:layout="@layout/fragment_share" />
+
+</navigation>
