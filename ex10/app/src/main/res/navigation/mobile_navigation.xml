@@ -17,4 +17,10 @@
         android:label="@string/title_share"
         tools:layout="@layout/fragment_share" />
 
+    <fragment
+        android:id="@+id/navigation_self"
+        android:name="com.shu_mc_03.illusion.ui.self.Self_Fragment"
+        android:label="@string/title_self"
+        tools:layout="@layout/fragment_self" />
+
 </navigation>

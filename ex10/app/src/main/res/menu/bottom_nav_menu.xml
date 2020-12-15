@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_baseline_filter_vintage_24"
         android:title="@string/title_share" />
 
+    <item
+        android:id="@+id/navigation_self"
+        android:icon="@drawable/ic_baseline_account_box_24"
+        android:title="@string/title_self" />
+
 </menu>
