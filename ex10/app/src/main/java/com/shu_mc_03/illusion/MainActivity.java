@@ -1,9 +1,13 @@
 package com.shu_mc_03.illusion;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -25,6 +29,22 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_view, menu);
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent_about = new Intent(getBaseContext(), About_Form.class);
+        intent_about.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (item.getItemId() == R.id.action_about) {
+            getBaseContext().startActivity(intent_about);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

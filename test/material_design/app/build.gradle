@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.shu_mc_03.illusion"
+        applicationId "com.example.test_material_design"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
