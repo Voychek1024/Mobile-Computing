@@ -10,4 +10,6 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="login_guide_text">123</string>
+    <string name="u_login_or_register">345</string>
 </resources>

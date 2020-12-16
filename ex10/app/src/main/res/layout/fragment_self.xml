@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,5 +20,108 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011" />
+        app:layout_constraintVertical_bias="0.85" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="400dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/self_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.011">
+
+        <ImageView
+            android:id="@+id/self_avatar"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/des_avatar"
+            android:src="@drawable/ic_baseline_supervised_user_circle_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/self_avatar"
+            android:gravity="center"
+            android:text="@string/text_username"
+            android:textColor="@color/black"
+            android:textSize="28sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="60dp"
+            android:layout_toEndOf="@+id/self_avatar"
+            android:gravity="center"
+            android:text="@string/text_bio"
+            android:textColor="#4B4B4B"
+            android:textSize="18sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/prompt_login"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:shadowColor="@color/black"
+            android:text="@string/prompt_login"
+            android:textAllCaps="false"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:icon="@drawable/ic_baseline_login_24" />
+    </RelativeLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mat_settings"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:text="@string/prompt_settings"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:icon="@drawable/ic_baseline_settings_24"
+        android:textAllCaps="false"
+        android:textAlignment="textStart"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mat_clear_all"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:text="@string/prompt_clear_all"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:icon="@drawable/ic_baseline_clear_all_24"
+        android:textAllCaps="false"
+        android:textAlignment="textStart"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
