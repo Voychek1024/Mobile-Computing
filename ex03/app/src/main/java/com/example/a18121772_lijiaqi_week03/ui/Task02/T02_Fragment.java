@@ -1,4 +1,4 @@
-package com.example.a18121772_lijiaqi_week03.ui.dashboard;
+package com.example.a18121772_lijiaqi_week03.ui.Task02;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.a18121772_lijiaqi_week03.R;
-
-import org.w3c.dom.Text;
 
 import static android.content.ContentValues.TAG;
 

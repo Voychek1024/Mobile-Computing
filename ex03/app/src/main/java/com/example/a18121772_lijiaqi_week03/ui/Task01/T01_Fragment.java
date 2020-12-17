@@ -1,8 +1,6 @@
-package com.example.a18121772_lijiaqi_week03.ui.home;
+package com.example.a18121772_lijiaqi_week03.ui.Task01;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.a18121772_lijiaqi_week03.R;
 
 import org.jetbrains.annotations.NotNull;
-
-import static android.content.ContentValues.TAG;
 
 public class T01_Fragment extends Fragment {
 
@@ -36,18 +32,16 @@ public class T01_Fragment extends Fragment {
                 textView.setText(s);
             }
         });
-        Button button = root.findViewById(R.id.button);
-        button.setOnClickListener(this::onClick);
-        return root;
-    }
+        Button button = root.findViewById(R.id.button_pass);
+        TextView textView1 = (TextView) root.findViewById(R.id.text_destination);
+        EditText editText = (EditText) root.findViewById(R.id.edit_text);
 
-    public void onClick(@NotNull View v) {
-        TextView textView1 = (TextView) v.getRootView().findViewById(R.id.textView);
-        EditText editText = (EditText) v.getRootView().findViewById(R.id.editTextTextPersonName);
-        if (v.getId() == R.id.button) {
-            // Log.i(TAG, "onClick: button");
-            // Log.d(TAG, "onClick() returned: " + editText.getText());
-            textView1.setText(editText.getText());
-        }
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textView1.setText(editText.getText().toString());
+            }
+        });
+        return root;
     }
 }

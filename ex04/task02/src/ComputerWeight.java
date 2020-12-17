@@ -15,6 +15,7 @@ class Computer implements ComputerWeight {
         return 20.0; // TODO: REWRITE computerWeight method
     }
 }
+
 class WashMachine implements ComputerWeight {
     @Override
     public double computeWeight() {

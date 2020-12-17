@@ -3,17 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_task_zero">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.a18121772_lijiaqi_week03.ui.home.T01_Fragment"
+        android:id="@+id/navigation_task_zero"
+        android:name="com.example.a18121772_lijiaqi_week03.ui.Task00.T00_Fragment"
+        android:label="@string/title_task_00"
+        tools:layout="@layout/frag_task_00" />
+
+    <fragment
+        android:id="@+id/navigation_task_one"
+        android:name="com.example.a18121772_lijiaqi_week03.ui.Task01.T01_Fragment"
         android:label="@string/title_task_01"
         tools:layout="@layout/frag_task_01" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.a18121772_lijiaqi_week03.ui.dashboard.T02_Fragment"
+        android:id="@+id/navigation_task_two"
+        android:name="com.example.a18121772_lijiaqi_week03.ui.Task02.T02_Fragment"
         android:label="@string/title_task_02"
         tools:layout="@layout/frag_task_02" />
 

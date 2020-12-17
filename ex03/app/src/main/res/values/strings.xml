@@ -2,4 +2,17 @@
     <string name="app_name">18121772_LiJiaQi_Week03</string>
     <string name="title_task_01">Task 01</string>
     <string name="title_task_02">Task 02</string>
+    <string name="text_view">Push button to pass text</string>
+    <string name="prompt_pass">传递↓</string>
+    <string name="text_hint">Type text here</string>
+    <string name="title_task_00">Task 00</string>
+    <string name="view_name">李嘉琪</string>
+    <string name="text_hint_t00">请输入学号 18121772</string>
+    <string name="option_1">Option 1</string>
+    <string name="option_2">Option 2</string>
+    <string name="checkbox_text_2">被动选择</string>
+    <string name="checkbox_text_1">主动选择</string>
+    <string name="prompt_show">Show</string>
+    <string name="des_image">environment</string>
+    <string name="_0000">0</string>
 </resources>
