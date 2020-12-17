@@ -37,4 +37,9 @@
     <string name="login_failed">"Login failed"</string>
     <string name="text_work">新建</string>
     <string name="des_work">studio_work</string>
+    <string name="text_about_us">关于我们</string>
+    <string name="text_dev_group">项目开发组</string>
+    <string name="text_info">分组信息</string>
+    <string name="text_github">GitHub项目地址</string>
+    <string name="LINK"><a href="https://github.com/Voychek1024/Mobile-Computing">GitHub repo</a></string>
 </resources>
