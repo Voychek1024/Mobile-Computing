@@ -12,7 +12,7 @@ For details, please check each folder or specific branches <br />
 ![status](https://img.shields.io/badge/status-completed-%23008080)
 
 [ex03](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex03) (due 12.17) <br />
-![status](https://img.shields.io/badge/status-report--pending-blue)
+![status](https://img.shields.io/badge/status-completed-%23008080)
 
 #### ex04-05 Personal Work (Java)
 

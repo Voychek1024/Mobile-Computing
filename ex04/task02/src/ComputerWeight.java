@@ -23,10 +23,10 @@ class WashMachine implements ComputerWeight {
     }
 }
 
-class Trunk {
+class Truck {
     ComputerWeight [] goods;
     double totalWeights = 0;
-    Trunk(ComputerWeight[] goods) {
+    Truck(ComputerWeight[] goods) {
         this.goods = goods;
     }
     public void setGoods(ComputerWeight[] goods) {
@@ -53,8 +53,8 @@ class CheckCarWeight {
             else
                 goods[i] = new WashMachine();
         }
-        Trunk trunk = new Trunk(goods);
-        System.out.printf("\n货车装载的货物重量: %-8.5f kg\n", trunk.getTotalWeights());
+        Truck truck = new Truck(goods);
+        System.out.printf("\n货车装载的货物重量: %-8.5f kg\n", truck.getTotalWeights());
         goods = new ComputerWeight[68]; //68 goods
         for (int i = 0; i < goods.length; i++) {
             if (i % 2==0)
@@ -62,7 +62,7 @@ class CheckCarWeight {
             else
                 goods[i] = new WashMachine();
         }
-        trunk.setGoods(goods);
-        System.out.printf("货车装载的货坜重量: %-8.5f kg\n", trunk.getTotalWeights());
+        truck.setGoods(goods);
+        System.out.printf("货车装载的货物重量: %-8.5f kg\n", truck.getTotalWeights());
     }
 }
