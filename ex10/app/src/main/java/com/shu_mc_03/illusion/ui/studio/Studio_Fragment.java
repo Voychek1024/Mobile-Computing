@@ -1,5 +1,6 @@
 package com.shu_mc_03.illusion.ui.studio;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,27 @@ public class Studio_Fragment extends Fragment {
             public void onClick(View v) {
                 // TODO: Camera/Gallery requirement
                 Toast.makeText(root.getContext(), "INTENT STUDIO", Toast.LENGTH_SHORT).show();
+                MaterialFilePicker()
+                        // Pass a source of context. Can be:
+                        //    .withActivity(Activity activity)
+                        //    .withFragment(Fragment fragment)
+                        //    .withSupportFragment(androidx.fragment.app.Fragment fragment)
+                        .withActivity(this)
+                        // With cross icon on the right side of toolbar for closing picker straight away
+                        .withCloseMenu(true)
+                        // Entry point path (user will start from it)
+                        .withPath(alarmsFolder.absolutePath)
+                        // Root path (user won't be able to come higher than it)
+                        .withRootPath(externalStorage.absolutePath)
+                        // Showing hidden files
+                        .withHiddenFiles(true)
+                        // Want to choose only jpg images
+                        .withFilter(Pattern.compile(".*\\.(jpg|jpeg)$"))
+                        // Don't apply filter to directories names
+                        .withFilterDirectories(false)
+                        .withTitle("Sample title")
+                        .withRequestCode(FILE_PICKER_REQUEST_CODE)
+                        .start()
             }
         });
         return root;
