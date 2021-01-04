@@ -1,0 +1,6 @@
+Name: 张三, Math: 72, Physics: 67, English: 70, Total Score: 209.0
+Name: 李四, Math: 92, Physics: 98, English: 88, Total Score: 278.0
+Name: 王五, Math: 68, Physics: 80, English: 77, Total Score: 225.0
+Name: 张三, Math: 72, Physics: 67, English: 70, Total Score: 209.0
+Name: 李四, Math: 92, Physics: 98, English: 88, Total Score: 278.0
+Name: 王五, Math: 68, Physics: 80, English: 77, Total Score: 225.0
