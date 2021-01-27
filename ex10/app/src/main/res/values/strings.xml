@@ -41,4 +41,9 @@
     <string name="text_dev_group">项目开发组</string>
     <string name="text_info">分组信息</string>
     <string name="text_github">GitHub项目地址</string>
+
+    <string-array name="choose_action">
+        <item>Camera</item>
+        <item>File</item>
+    </string-array>
 </resources>

@@ -1,7 +1,14 @@
 package com.shu_mc_03.illusion.ui.studio;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +28,47 @@ import com.shu_mc_03.illusion.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.app.Activity.RESULT_OK;
+
 public class Studio_Fragment extends Fragment {
+    private static final String TAG = "SYS_DEBUG";
+
     protected AlphaAnimation fadeOut = new AlphaAnimation(1.0f, 0.0f);
 
     private Studio_ViewModel studioViewModel;
+
+    static final int REQUEST_IMAGE_OPEN = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    public void selectImage() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setType("image/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        startActivityForResult(intent, REQUEST_IMAGE_OPEN);
+    }
+
+    public void capturePhoto() {
+        Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+        if (intent.resolveActivity(getActivity().getPackageManager())!=null) {
+            startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_OPEN && resultCode == RESULT_OK) {
+            Uri fullPhotoUri = data.getData();
+            Log.i(TAG, "onActivityResult: Success Return URI");
+            // TODO: more actions
+        }
+        else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bitmap thumbnail = data.getParcelableExtra("data");
+            Uri fullPhotoUri = data.getData();
+            Log.i(TAG, "onActivityResult: Success Return URI Cap");
+            // TODO: more actions
+        }
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,27 +102,19 @@ public class Studio_Fragment extends Fragment {
             public void onClick(View v) {
                 // TODO: Camera/Gallery requirement
                 Toast.makeText(root.getContext(), "INTENT STUDIO", Toast.LENGTH_SHORT).show();
-                MaterialFilePicker()
-                        // Pass a source of context. Can be:
-                        //    .withActivity(Activity activity)
-                        //    .withFragment(Fragment fragment)
-                        //    .withSupportFragment(androidx.fragment.app.Fragment fragment)
-                        .withActivity(this)
-                        // With cross icon on the right side of toolbar for closing picker straight away
-                        .withCloseMenu(true)
-                        // Entry point path (user will start from it)
-                        .withPath(alarmsFolder.absolutePath)
-                        // Root path (user won't be able to come higher than it)
-                        .withRootPath(externalStorage.absolutePath)
-                        // Showing hidden files
-                        .withHiddenFiles(true)
-                        // Want to choose only jpg images
-                        .withFilter(Pattern.compile(".*\\.(jpg|jpeg)$"))
-                        // Don't apply filter to directories names
-                        .withFilterDirectories(false)
-                        .withTitle("Sample title")
-                        .withRequestCode(FILE_PICKER_REQUEST_CODE)
-                        .start()
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("SELECT ACTION")
+                        .setItems(R.array.choose_action, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (which == 0)
+                                    capturePhoto();
+                                if (which == 1)
+                                    selectImage();
+                            }
+                        });
+                builder.create();
+                builder.show();
             }
         });
         return root;
