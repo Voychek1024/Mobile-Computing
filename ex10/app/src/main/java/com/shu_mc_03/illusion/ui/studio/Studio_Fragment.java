@@ -61,6 +61,9 @@ public class Studio_Fragment extends Fragment {
             Uri fullPhotoUri = data.getData();
             Log.i(TAG, "onActivityResult: Success Return URI");
             // TODO: more actions
+            Intent intent_edit = new Intent(getContext(), StudioIntentActivity.class);
+            intent_edit.putExtra("imageUri", fullPhotoUri);
+            getContext().startActivity(intent_edit);
         }
         else if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bitmap thumbnail = data.getParcelableExtra("data");

@@ -41,6 +41,10 @@
     <string name="text_dev_group">项目开发组</string>
     <string name="text_info">分组信息</string>
     <string name="text_github">GitHub项目地址</string>
+    <string name="image_view">image_view</string>
+    <string name="prompt_stu_share">分享</string>
+    <string name="prompt_stu_edit">编辑</string>
+    <string name="prompt_stu_del">删除</string>
 
     <string-array name="choose_action">
         <item>Camera</item>
