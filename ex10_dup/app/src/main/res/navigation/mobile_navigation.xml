@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.shu_mc_03.word_town.ui.game.GameFragment"
+        android:label="@string/title_game"
+        tools:layout="@layout/fragment_game" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.shu_mc_03.word_town.ui.collections.CollectionsFragment"
+        android:label="@string/title_collections"
+        tools:layout="@layout/fragment_collections" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.shu_mc_03.word_town.ui.self.SelfFragment"
+        android:label="@string/title_self"
+        tools:layout="@layout/fragment_self" />
+</navigation>
