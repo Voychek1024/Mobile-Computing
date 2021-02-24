@@ -84,8 +84,6 @@ public class GameFragment extends Fragment {
                 getContext().startActivity(intent_board);
             }
         });
-
-
         return root;
     }
 }
