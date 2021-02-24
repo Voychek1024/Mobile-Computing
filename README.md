@@ -40,3 +40,6 @@ For details, please check each folder or specific branches <br />
 
 [ex10](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex10) (due 21.3.11) <br />
 ![status](https://img.shields.io/badge/status-slow%20progress-orange)
+
+[ex10_dup](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex10_dup) (due 21.3.11) <br />
+![status](https://img.shields.io/badge/status-working(7%2F24)-yellow)
