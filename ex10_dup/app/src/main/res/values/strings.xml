@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Word_Town</string>
+    <string name="app_name">Word Town</string>
     <string name="title_game">Game</string>
     <string name="title_collections">Collections</string>
     <string name="title_self">Myself</string>
@@ -15,4 +15,8 @@
     <string name="prompt_settings">设置</string>
     <string name="prompt_clear_all">清除全部数据</string>
     <string name="score_board">Score Board</string>
+    <string name="example">example</string>
+    <string name="game_status">Game Status</string>
+    <string name="time">Time:</string>
+    <string name="score">Score:</string>
 </resources>
