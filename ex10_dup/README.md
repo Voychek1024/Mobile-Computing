@@ -28,12 +28,13 @@ Final Team Work (Android Studio)
         - [ ] Credit Animations
     - [x] Game Result
       - [x] Pref Saving
+      - [ ] Screenshot
 - [ ] Wrong Answer Collections
-  - [ ] Pref Loading
+  - [x] Pref Loading
   - [ ] List View (MD two-line List with icon)
   - [ ] Deletion
-- [x] Myself / Score Board
+- [ ] Myself / Score Board
   - [ ] Login
   - [x] Highest Score
     - [x] Pref Loading
-  - [ ] Etc..
+  - [x] Etc..

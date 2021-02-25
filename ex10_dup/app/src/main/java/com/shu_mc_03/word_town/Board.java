@@ -1,7 +1,6 @@
 package com.shu_mc_03.word_town;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -17,10 +16,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import java.util.Stack;
 
 public class Board extends AppCompatActivity {
@@ -34,6 +33,7 @@ public class Board extends AppCompatActivity {
     int score = 0;
     int score_cal = 0;
     MediaPlayer player;
+    Set<Integer> wrong_answer = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +43,8 @@ public class Board extends AppCompatActivity {
         Log.d(TAG, "onCreate() returned: GAMEMODE=" + mode);
         String[] color = {"#5B9D74", "#FFE666", "#7D93C8", "#364E4A", "#196432", "#7D93C8", "#C9B8FF", "#F5C27D",
                 "#5B9D74", "#FFE666", "#7D93C8", "#364E4A", "#196432", "#7D93C8", "#C9B8FF", "#F5C27D"};
-        String[] test = {"0","1","2","3","4","5","6","7","zero","one","two","three","four","five","six","seven"};
-        Integer[] idx_md = {0,1,2,3,4,5,6,7,0,1,2,3,4,5,6,7};
+        String[] test = {"0","zero","one","1","two","2","three","3","four","4","five","5","six","6","seven","7"};
+        Integer[] idx_md = {0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7};
         Button[] buttons =
                 {findViewById(R.id.button_0_0), findViewById(R.id.button_0_1), findViewById(R.id.button_0_2), findViewById(R.id.button_0_3),
                         findViewById(R.id.button_1_0), findViewById(R.id.button_1_1), findViewById(R.id.button_1_2), findViewById(R.id.button_1_3),
@@ -58,11 +58,14 @@ public class Board extends AppCompatActivity {
         button_quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: SharedPreferences Store: gamemode, score, wrong answer idx
+                // SharedPreferences Store: gamemode, score, wrong answer idx
                 SharedPreferences.Editor editor = getSharedPreferences("current_game", MODE_PRIVATE).edit();
                 editor.putString("MODE_"+Integer.toString(mode), String.valueOf(score_cal));
-                editor.putString("MODE_"+Integer.toString(mode)+"_WAIDX", "None");
+                String wa_write = String.valueOf(wrong_answer);
+                wa_write = wa_write.substring(1,wa_write.length()-1);
+                editor.putString("MODE_"+Integer.toString(mode)+"_WAIDX", wa_write);
                 editor.apply();
+                Log.d(TAG, "Game Wrong Answer: " + wa_write);
                 Log.d(TAG, "onClick() button_quit: " + "RETURN TO MENU");
                 Toast.makeText(getBaseContext(), "Game Saved.", Toast.LENGTH_SHORT).show();
                 finish();
@@ -100,6 +103,7 @@ public class Board extends AppCompatActivity {
         handler.postDelayed(r, 0);
 
         // Game Model implementation
+        wrong_answer.clear();
         Integer[] shadow = {};
         fisher_randomize(shadow, color, color.length);
         if (mode == 0) {
@@ -150,6 +154,8 @@ public class Board extends AppCompatActivity {
                             }
                             else {
                                 Log.d(TAG, "Game Judge: " + "Wrong...");
+                                wrong_answer.add(stack_cp.get(0));
+                                wrong_answer.add(stack_cp.get(1));
                             }
                             stack_cp.clear();
                             btn_cp.clear();
