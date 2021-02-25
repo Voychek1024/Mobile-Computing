@@ -2,6 +2,8 @@ package com.shu_mc_03.word_town;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -16,11 +18,16 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.Stack;
+
+import javax.crypto.Cipher;
 
 public class Board extends AppCompatActivity {
 
@@ -28,12 +35,16 @@ public class Board extends AppCompatActivity {
     int time_usage = 0;
     boolean on_play = true;
     int click_count = 0;
-    Stack<Integer> stack_cp = new Stack<Integer>();
+    Stack<String> stack_cp = new Stack<String>();
     Stack<Button> btn_cp = new Stack<Button>();
     int score = 0;
     int score_cal = 0;
     MediaPlayer player;
-    Set<Integer> wrong_answer = new HashSet<>();
+    Set<String> wrong_answer = new HashSet<String>();
+
+    private MyDatabaseHelper helper;
+    List<String> test = new ArrayList<>();
+    List<String> idx_md = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +52,8 @@ public class Board extends AppCompatActivity {
         setContentView(R.layout.activity_board);
         int mode = getIntent().getIntExtra("MODE", 0);
         Log.d(TAG, "onCreate() returned: GAMEMODE=" + mode);
-        String[] color = {"#5B9D74", "#FFE666", "#7D93C8", "#364E4A", "#196432", "#7D93C8", "#C9B8FF", "#F5C27D",
-                "#5B9D74", "#FFE666", "#7D93C8", "#364E4A", "#196432", "#7D93C8", "#C9B8FF", "#F5C27D"};
-        String[] test = {"0","zero","one","1","two","2","three","3","four","4","five","5","six","6","seven","7"};
-        Integer[] idx_md = {0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7};
+        List<String> color = Arrays.asList("#5B9D74", "#FFE666", "#7D93C8", "#364E4A", "#196432", "#7D93C8", "#C9B8FF", "#F5C27D",
+                "#5B9D74", "#FFE666", "#7D93C8", "#364E4A", "#196432", "#7D93C8", "#C9B8FF", "#F5C27D");
         Button[] buttons =
                 {findViewById(R.id.button_0_0), findViewById(R.id.button_0_1), findViewById(R.id.button_0_2), findViewById(R.id.button_0_3),
                         findViewById(R.id.button_1_0), findViewById(R.id.button_1_1), findViewById(R.id.button_1_2), findViewById(R.id.button_1_3),
@@ -104,67 +113,67 @@ public class Board extends AppCompatActivity {
 
         // Game Model implementation
         wrong_answer.clear();
-        Integer[] shadow = {};
-        fisher_randomize(shadow, color, color.length);
-        if (mode == 0) {
-            fisher_randomize(idx_md, test, test.length);
-            Log.d(TAG, "SHUFFLED List: " + Arrays.toString(test));
-            Log.d(TAG, "Index Markdown: " + Arrays.toString(idx_md));
-            int idx = 0;
-            for (Button button : buttons) {
-                button.setText(test[idx]);
-                button.setBackgroundColor(Color.parseColor(color[idx]));
-                idx++;
-                button.setOnClickListener(new View.OnClickListener() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onClick(View v) {
-                        click_count += 1;
-                        stack_cp.push(idx_md[Arrays.asList(test).indexOf(button.getText().toString())]);
-                        Log.d(TAG, "Pushed Button: " + button.getId());
-                        btn_cp.push(button);
-                        Log.d(TAG, "Judgement Stack: " + stack_cp);
+        List<String> shadow = new ArrayList<>();
+        helper = new MyDatabaseHelper(getBaseContext(), "Words.db", null, 1);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        fisher_randomize(shadow, color, color.size());
+        init_words(idx_md, test, mode, db);
+        fisher_randomize(idx_md, test, test.size());
+        Log.d(TAG, "SHUFFLED List: " + test);
+        Log.d(TAG, "Index Markdown: " + idx_md);
+        int idx = 0;
+        for (Button button : buttons) {
+            button.setText(test.get(idx));
+            button.setBackgroundColor(Color.parseColor(color.get(idx)));
+            idx++;
+            button.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("SetTextI18n")
+                @Override
+                public void onClick(View v) {
+                    click_count += 1;
+                    stack_cp.push(idx_md.get(test.indexOf(button.getText().toString())));
+                    Log.d(TAG, "Pushed Button: " + button.getId());
+                    btn_cp.push(button);
+                    Log.d(TAG, "Judgement Stack: " + stack_cp);
 
-                        if (click_count == 2) {
-                            click_count = 0;
-                            Log.d(TAG, "Judgement Stack Final: " + stack_cp);
-                            if (btn_cp.get(0).equals(btn_cp.get(1))) {
-                                Log.d(TAG, "Game Judge: " + "Same....");
-                            }
-                            else if (stack_cp.get(0).equals(stack_cp.get(1))) {
-                                Log.d(TAG, "Game Judge: " + "Correct!");
-                                // TODO: Destroy Animations?
-                                btn_cp.get(0).setAlpha(0.0f);
-                                btn_cp.get(1).setAlpha(0.0f);
-                                btn_cp.get(0).setClickable(false);
-                                btn_cp.get(1).setClickable(false);
-                                score += 2;
-                                score_dt.setText(score + "pts");
-                                if (score == 16) {
-                                    handler.removeCallbacks(r);
-                                    // Pop Game Result
-                                    player.stop();
-                                    total_time.setText(Integer.toString(time_usage));
-                                    score_cal = (int) (score * (1.0/time_usage) * 500);
-                                    total_score.setText(Integer.toString(score_cal));
-                                    result.setAlpha(1.0f);
-                                    button_share.setClickable(true);
-                                    button_quit.setClickable(true);
-                                }
-                            }
-                            else {
-                                Log.d(TAG, "Game Judge: " + "Wrong...");
-                                wrong_answer.add(stack_cp.get(0));
-                                wrong_answer.add(stack_cp.get(1));
-                            }
-                            stack_cp.clear();
-                            btn_cp.clear();
+                    if (click_count == 2) {
+                        click_count = 0;
+                        Log.d(TAG, "Judgement Stack Final: " + stack_cp);
+                        if (btn_cp.get(0).equals(btn_cp.get(1))) {
+                            Log.d(TAG, "Game Judge: " + "Same....");
                         }
+                        else if (stack_cp.get(0).equals(stack_cp.get(1))) {
+                            Log.d(TAG, "Game Judge: " + "Correct!");
+                            // TODO: Destroy Animations?
+                            btn_cp.get(0).setAlpha(0.0f);
+                            btn_cp.get(1).setAlpha(0.0f);
+                            btn_cp.get(0).setClickable(false);
+                            btn_cp.get(1).setClickable(false);
+                            score += 2;
+                            score_dt.setText(score + "pts");
+                            if (score == 16) {
+                                handler.removeCallbacks(r);
+                                // Pop Game Result
+                                player.stop();
+                                total_time.setText(Integer.toString(time_usage));
+                                score_cal = (int) (score * (1.0/time_usage) * 500);
+                                total_score.setText(Integer.toString(score_cal));
+                                result.setAlpha(1.0f);
+                                button_share.setClickable(true);
+                                button_quit.setClickable(true);
+                            }
+                        }
+                        else {
+                            Log.d(TAG, "Game Judge: " + "Wrong...");
+                            wrong_answer.add(stack_cp.get(0));
+                            wrong_answer.add(stack_cp.get(1));
+                        }
+                        stack_cp.clear();
+                        btn_cp.clear();
                     }
-                });
-            }
+                }
+            });
         }
-        // TODO: other MODE implementations
 
         Button button_music = (Button) findViewById(R.id.music_playback);
         button_music.setOnClickListener(new View.OnClickListener() {
@@ -202,25 +211,57 @@ public class Board extends AppCompatActivity {
         });
     }
 
-    static void fisher_randomize(Integer[] idx, String[] arr, int n) {
+    private void init_words(List<String> idx_md, List<String> test, int mode, SQLiteDatabase db) {
         Random r = new Random();
-        if (idx.length != 0) {
+        int j = 0;
+        while (idx_md.size() != 16) {
+            Cursor cursor = null;
+            if (mode == 0) {
+                j = r.nextInt(5518 + 1);
+                cursor = db.rawQuery("SELECT t.* FROM WORD_EASY t WHERE ID=?", new String[]{String.valueOf(j)});
+            }
+            else if (mode == 1) {
+                j = r.nextInt(4610 + 1);
+                cursor = db.rawQuery("SELECT t.* FROM WORD_NORMAL t WHERE ID=?", new String[]{String.valueOf(j)});
+            }
+            else if (mode == 2) {
+                j = r.nextInt(2219 + 1);
+                cursor = db.rawQuery("SELECT t.* FROM WORD_HARD t WHERE ID=?", new String[]{String.valueOf(j)});
+            }
+            if (cursor.moveToFirst()) {
+                do {
+                    String id = cursor.getString(cursor.getColumnIndex("ID"));
+                    String word = cursor.getString(cursor.getColumnIndex("NAME"));
+                    String exp = cursor.getString(cursor.getColumnIndex("EXP"));
+                    idx_md.add(id);
+                    test.add(word);
+                    idx_md.add(id);
+                    test.add(exp);
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+        }
+    }
+
+    static void fisher_randomize(List<String> idx, List<String> arr, int n) {
+        Random r = new Random();
+        if (idx.size() != 0) {
             for (int i = n - 1; i > 0; i--) {
                 int j = r.nextInt(i + 1);
-                String temp = arr[i];
-                int tmp = idx[i];
-                arr[i] = arr[j];
-                idx[i] = idx[j];
-                arr[j] = temp;
-                idx[j] = tmp;
+                String temp = arr.get(i);
+                String tmp = idx.get(i);
+                arr.set(i, arr.get(j));
+                idx.set(i, idx.get(j));
+                arr.set(j, temp);
+                idx.set(j, tmp);
             }
         }
         else {
             for (int i = n - 1; i > 0; i--) {
                 int j = r.nextInt(i + 1);
-                String temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
+                String temp = arr.get(i);
+                arr.set(i, arr.get(j));
+                arr.set(j, temp);
             }
         }
     }

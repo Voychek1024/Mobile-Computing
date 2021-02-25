@@ -13,7 +13,7 @@ Final Team Work (Android Studio)
 - [x] Navigation Bar
 - [ ] Game Field
   - [x] Level Choice
-  - [ ] SQLite word database
+  - [x] SQLite word database
   - [x] Game Board XML
     - [x] Timer
     - [x] Music / Sounds

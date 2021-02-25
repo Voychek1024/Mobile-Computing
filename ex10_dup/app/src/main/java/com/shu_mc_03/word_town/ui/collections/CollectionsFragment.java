@@ -2,6 +2,8 @@ package com.shu_mc_03.word_town.ui.collections;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shu_mc_03.word_town.DataModel;
 import com.shu_mc_03.word_town.MyAdapter;
+import com.shu_mc_03.word_town.MyDatabaseHelper;
 import com.shu_mc_03.word_town.R;
 
 import java.lang.reflect.Array;
@@ -83,9 +86,10 @@ public class CollectionsFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
         // Read Pref
-        // Test Data
-        String[] test = {"zero","0","one","1","two","2","three","3","four","4","five","5","six","6","seven","7"};
-        Integer[] idx_md = {0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7};
+        // Load database
+
+        MyDatabaseHelper helper = new MyDatabaseHelper(root.getContext(), "Words.db", null, 1);
+        SQLiteDatabase db = helper.getReadableDatabase();
         try {
             SharedPreferences pref = getContext().getSharedPreferences("current_game", Context.MODE_PRIVATE);
             wa_0 = pref.getString("MODE_0_WAIDX", "");
@@ -94,20 +98,42 @@ public class CollectionsFragment extends Fragment {
             String[] wa_idx_0 = wa_0.split(", ");
             String[] wa_idx_1 = wa_1.split(", ");
             String[] wa_idx_2 = wa_2.split(", ");
-            for (String item : wa_idx_0) {
-                // Easy DB
-                int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
-                dataModelList.add(new DataModel(test[result], test[result + 1]));
+            try {
+                for (String item : wa_idx_0) {
+                    // Easy DB
+                    /*int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
+                    dataModelList.add(new DataModel(test[result], test[result + 1]))*/;
+                    Log.d(TAG, "WA_GET_E: " + Arrays.toString(wa_idx_0));
+                    String[] result = init_word_idx(item, 0, db);
+                    dataModelList.add(new DataModel(result[0], result[1]));
+                }
             }
-            for (String item : wa_idx_1) {
-                // Normal DB
-                int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
-                dataModelList.add(new DataModel(test[result], test[result + 1]));
+            catch (NumberFormatException e) {
+                Log.e(TAG, "onCreateView: ERR");
             }
-            for (String item : wa_idx_2) {
-                // Hard DB
-                int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
-                dataModelList.add(new DataModel(test[result], test[result + 1]));
+            try {
+                for (String item : wa_idx_1) {
+                    // Easy DB
+                    /*int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
+                    dataModelList.add(new DataModel(test[result], test[result + 1]))*/;
+                    Log.d(TAG, "WA_GET_N: " + Arrays.toString(wa_idx_1));
+                    String[] result = init_word_idx(item,1, db);
+                    dataModelList.add(new DataModel(result[0], result[1]));
+                }
+            }
+            catch (NumberFormatException e) {
+                Log.e(TAG, "onCreateView: ERR");
+            }
+            try {
+                Log.d(TAG, "WA_GET_H: " + Arrays.toString(wa_idx_2));
+                for (String item : wa_idx_2) {
+                    // Hard DB
+                    String[] result = init_word_idx(item,2, db);
+                    dataModelList.add(new DataModel(result[0], result[1]));
+                }
+            }
+            catch (NumberFormatException e) {
+                Log.e(TAG, "onCreateView: ERR");
             }
         }
         catch (Exception e) {
@@ -115,5 +141,28 @@ public class CollectionsFragment extends Fragment {
         }
         mAdapter.notifyDataSetChanged();
         return root;
+    }
+
+    private String[] init_word_idx(String item, int mode, SQLiteDatabase db) {
+        String id, word = null, exp = null;
+        if (!item.equals("")) {
+            Cursor cursor = null;
+            if (mode == 0)
+                cursor = db.rawQuery("SELECT t.* FROM WORD_EASY t WHERE ID=?", new String[]{item});
+            else if (mode == 1)
+                cursor = db.rawQuery("SELECT t.* FROM WORD_NORMAL t WHERE ID=?", new String[]{item});
+            else if (mode == 2)
+                cursor = db.rawQuery("SELECT t.* FROM WORD_HARD t WHERE ID=?", new String[]{item});
+            if (cursor.moveToFirst()) {
+                do {
+                    id = cursor.getString(cursor.getColumnIndex("ID"));
+                    word = cursor.getString(cursor.getColumnIndex("NAME"));
+                    exp = cursor.getString(cursor.getColumnIndex("EXP"));
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+            return new String[] {word, exp};
+        }
+        throw new NumberFormatException();
     }
 }
