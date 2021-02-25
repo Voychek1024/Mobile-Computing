@@ -19,4 +19,9 @@
     <string name="game_status">Game Status</string>
     <string name="time">Time:</string>
     <string name="score">Score:</string>
+    <string name="game_result">Game Result</string>
+    <string name="time_usage">Time Usage:</string>
+    <string name="total_score">Total Score:</string>
+    <string name="share">Share</string>
+    <string name="quit">Quit</string>
 </resources>

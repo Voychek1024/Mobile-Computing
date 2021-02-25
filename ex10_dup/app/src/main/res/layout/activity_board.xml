@@ -74,7 +74,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="295dp"
             android:layout_marginTop="70dp"
-            android:text="10pts"
+            android:text="0pts"
             android:textColor="@color/black"
             android:textSize="28sp" />
     </RelativeLayout>
@@ -338,4 +338,101 @@
             android:textSize="18sp"
             tools:ignore="RtlCompat" />
     </GridLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="385dp"
+        android:layout_height="385dp"
+        android:background="@drawable/result_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        android:clickable="false">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="50dp"
+            android:text="@string/game_result"
+            android:textColor="@color/black"
+            android:textSize="32sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="130dp"
+            android:text="@string/time_usage"
+            android:textColor="@color/black"
+            android:textSize="28sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="200dp"
+            android:text="@string/total_score"
+            android:textColor="@color/black"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/time_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="130dp"
+            android:text="60s"
+            android:textColor="@color/black"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/total_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="200dp"
+            android:text="120pts"
+            android:textColor="@color/black"
+            android:textSize="28sp" />
+
+        <Button
+            android:id="@+id/prompt_share"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="280dp"
+            android:text="@string/share"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:clickable="false"/>
+
+        <Button
+            android:id="@+id/prompt_quit"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="45dp"
+            android:layout_marginTop="280dp"
+            android:text="@string/quit"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:clickable="false"/>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

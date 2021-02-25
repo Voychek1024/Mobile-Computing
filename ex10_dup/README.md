@@ -17,15 +17,16 @@ Final Team Work (Android Studio)
   - [x] Game Board XML
     - [x] Timer
     - [x] Music / Sounds
-      - [ ] Music Player
-      - [ ] Music Playback Control
-      - [ ] Music Sound Control
+      - [x] Music Player
+      - [x] Music Playback Control
+      - [x] Music Sound Control
     - [x] Buttons / Widgets
-      - [ ] Button binding (Dynamic Color)
-      - [ ] Judgement function
+      - [x] Button binding 
+      - [ ] Button Dynamic Color
+      - [x] Judgement function
       - [ ] Destroy Animations
       - [ ] Credit Animations
-    - [ ] Game Result
+    - [x] Game Result
 - [ ] Wrong Answer Collections
   - [ ] List View (MD two-line List with icon)
   - [ ] Deletion
