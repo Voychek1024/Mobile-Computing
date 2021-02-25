@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Word 1"
-                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textAppearance="?attr/textAppearanceHeadline5"
                 />
             <TextView
                 android:id="@+id/card_exp"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Explanation for word 1"
-                android:textAppearance="?attr/textAppearanceBody2"
+                android:textAppearance="?attr/textAppearanceBody1"
                 android:textColor="?android:attr/textColorSecondary"
                 />
         </LinearLayout>
@@ -51,6 +51,7 @@
                 android:text="@string/prompt_star"
                 android:textAllCaps="false"
                 style="?attr/borderlessButtonStyle"
+                android:textSize="16sp"
                 />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/prompt_delete"
@@ -59,6 +60,7 @@
                 android:text="@string/prompt_delete"
                 android:textAllCaps="false"
                 style="?attr/borderlessButtonStyle"
+                android:textSize="16sp"
                 />
         </LinearLayout>
     </LinearLayout>

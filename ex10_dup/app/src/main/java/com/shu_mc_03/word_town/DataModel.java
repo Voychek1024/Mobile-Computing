@@ -6,9 +6,9 @@ public class DataModel {
     private final String word;
     private final String explanation;
 
-    public DataModel(int id) {
-        word = String.format(Locale.ENGLISH, "Word %d Here", id);
-        explanation = String.format(Locale.ENGLISH, "Exp %d Here", id);
+    public DataModel(String wd, String exp) {
+        word = wd;
+        explanation = exp;
     }
     public String getWord() {
         return word;

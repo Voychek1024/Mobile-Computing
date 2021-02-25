@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -71,6 +73,15 @@ public class CollectionsFragment extends Fragment {
         };
         timer.schedule(task, 1500);
 
+        // RecycleView with MD_Cards
+        mRecyclerView = root.findViewById(R.id.recycler);
+        List<DataModel> dataModelList = new ArrayList<>();
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(root.getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new MyAdapter(dataModelList, root.getContext());
+        mRecyclerView.setAdapter(mAdapter);
+
         // Read Pref
         // Test Data
         String[] test = {"zero","0","one","1","two","2","three","3","four","4","five","5","six","6","seven","7"};
@@ -81,30 +92,28 @@ public class CollectionsFragment extends Fragment {
             wa_1 = pref.getString("MODE_1_WAIDX", "");
             wa_2 = pref.getString("MODE_2_WAIDX", "");
             String[] wa_idx_0 = wa_0.split(", ");
+            String[] wa_idx_1 = wa_1.split(", ");
+            String[] wa_idx_2 = wa_2.split(", ");
             for (String item : wa_idx_0) {
+                // Easy DB
                 int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
-                String result_item = test[result] + " " + test[result + 1];
-                wa_count += 1;
-                Log.d(TAG, "CREATE WA_LIST: " + result_item);
+                dataModelList.add(new DataModel(test[result], test[result + 1]));
             }
-            Log.d(TAG, "Read Pref: " + Arrays.asList(wa_0).get(0));
+            for (String item : wa_idx_1) {
+                // Normal DB
+                int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
+                dataModelList.add(new DataModel(test[result], test[result + 1]));
+            }
+            for (String item : wa_idx_2) {
+                // Hard DB
+                int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
+                dataModelList.add(new DataModel(test[result], test[result + 1]));
+            }
         }
         catch (Exception e) {
             Log.e(TAG, "onCreateView: ERR", e);
         }
-
-        // TODO: RecycleView with MD_Cards
-        mRecyclerView = root.findViewById(R.id.recycler);
-        List<DataModel> dataModelList = new ArrayList<>();
-        for (int i = 1; i <= wa_count; i++) {
-            dataModelList.add(new DataModel(i));
-        }
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(root.getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new MyAdapter(dataModelList, root.getContext());
-        mRecyclerView.setAdapter(mAdapter);
-
+        mAdapter.notifyDataSetChanged();
         return root;
     }
 }

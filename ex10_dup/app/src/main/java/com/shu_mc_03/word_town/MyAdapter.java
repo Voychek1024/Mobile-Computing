@@ -4,8 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    private final List<DataModel> dataModelList;
+    private List<DataModel> dataModelList;
     private final Context mContext;
 
     public MyAdapter(List<DataModel> modelList, Context context) {
@@ -39,20 +40,43 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return dataModelList.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
 
         public TextView word_textView;
         public TextView exp_textView;
+        public Button button_star;
+        public Button button_del;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             word_textView = itemView.findViewById(R.id.card_word);
             exp_textView = itemView.findViewById(R.id.card_exp);
+            button_del = itemView.findViewById(R.id.prompt_delete);
+            button_star = itemView.findViewById(R.id.prompt_star);
         }
 
         public void bindData(DataModel dataModel, Context context) {
             word_textView.setText(dataModel.getWord());
             exp_textView.setText(dataModel.getExplanation());
+            button_del.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Del
+                    delete_item(getAdapterPosition());
+                }
+            });
+            button_star.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // TODO: Star
+
+                }
+            });
+        }
+        private void delete_item(int pos) {
+            Toast.makeText(itemView.getContext(), "DEL", Toast.LENGTH_SHORT).show();
+            dataModelList.remove(pos);
+            notifyDataSetChanged();
         }
     }
 }

@@ -29,10 +29,10 @@ Final Team Work (Android Studio)
     - [x] Game Result
       - [x] Pref Saving
       - [ ] Screenshot
-- [ ] Wrong Answer Collections
+- [x] Wrong Answer Collections
   - [x] Pref Loading
   - [x] List View (MD_Card Recycler-View)
-  - [ ] Deletion
+  - [x] Deletion
 - [ ] Myself / Score Board
   - [ ] Login
   - [x] Highest Score
