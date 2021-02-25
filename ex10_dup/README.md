@@ -22,15 +22,18 @@ Final Team Work (Android Studio)
       - [x] Music Sound Control
     - [x] Buttons / Widgets
       - [x] Button binding 
-      - [ ] Button Dynamic Color
+      - [x] Button Dynamic Color
       - [x] Judgement function
-      - [ ] Destroy Animations
-      - [ ] Credit Animations
+        - [ ] Destroy Animations
+        - [ ] Credit Animations
     - [x] Game Result
+      - [x] Pref Saving
 - [ ] Wrong Answer Collections
+  - [ ] Pref Loading
   - [ ] List View (MD two-line List with icon)
   - [ ] Deletion
 - [x] Myself / Score Board
   - [ ] Login
-  - [ ] Highest Score
+  - [x] Highest Score
+    - [x] Pref Loading
   - [ ] Etc..

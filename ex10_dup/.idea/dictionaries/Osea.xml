@@ -2,6 +2,7 @@
   <dictionary name="Osea">
     <words>
       <w>gamemode</w>
+      <w>waidx</w>
     </words>
   </dictionary>
 </component>

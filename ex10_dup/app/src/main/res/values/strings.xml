@@ -14,7 +14,7 @@
     <string name="text_username">请登录</string>
     <string name="prompt_settings">设置</string>
     <string name="prompt_clear_all">清除全部数据</string>
-    <string name="score_board">Score Board</string>
+    <string name="score_board">Highest Score</string>
     <string name="example">example</string>
     <string name="game_status">Game Status</string>
     <string name="time">Time:</string>
