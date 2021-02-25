@@ -15,13 +15,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.shu_mc_03.word_town.DataModel;
+import com.shu_mc_03.word_town.MyAdapter;
 import com.shu_mc_03.word_town.R;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -32,8 +38,13 @@ public class CollectionsFragment extends Fragment {
     protected AlphaAnimation fadeOut = new AlphaAnimation(1.0f, 0.0f);
     private CollectionsViewModel collectionsViewModel;
 
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     String wa_0, wa_1, wa_2;
     Set<String> wrong_answer = new HashSet<>();
+    int wa_count = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -73,6 +84,7 @@ public class CollectionsFragment extends Fragment {
             for (String item : wa_idx_0) {
                 int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
                 String result_item = test[result] + " " + test[result + 1];
+                wa_count += 1;
                 Log.d(TAG, "CREATE WA_LIST: " + result_item);
             }
             Log.d(TAG, "Read Pref: " + Arrays.asList(wa_0).get(0));
@@ -81,7 +93,17 @@ public class CollectionsFragment extends Fragment {
             Log.e(TAG, "onCreateView: ERR", e);
         }
 
-        // TODO: Two-lined list with icon
+        // TODO: RecycleView with MD_Cards
+        mRecyclerView = root.findViewById(R.id.recycler);
+        List<DataModel> dataModelList = new ArrayList<>();
+        for (int i = 1; i <= wa_count; i++) {
+            dataModelList.add(new DataModel(i));
+        }
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(root.getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new MyAdapter(dataModelList, root.getContext());
+        mRecyclerView.setAdapter(mAdapter);
 
         return root;
     }

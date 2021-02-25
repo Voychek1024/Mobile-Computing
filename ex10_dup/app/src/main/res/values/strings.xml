@@ -24,4 +24,6 @@
     <string name="total_score">Total Score:</string>
     <string name="share">Share</string>
     <string name="quit">Quit</string>
+    <string name="prompt_delete">Delete</string>
+    <string name="prompt_star">Star</string>
 </resources>

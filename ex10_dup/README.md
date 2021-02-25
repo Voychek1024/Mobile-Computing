@@ -31,7 +31,7 @@ Final Team Work (Android Studio)
       - [ ] Screenshot
 - [ ] Wrong Answer Collections
   - [x] Pref Loading
-  - [ ] List View (MD two-line List with icon)
+  - [x] List View (MD_Card Recycler-View)
   - [ ] Deletion
 - [ ] Myself / Score Board
   - [ ] Login
