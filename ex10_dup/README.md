@@ -33,6 +33,7 @@ Final Team Work (Android Studio)
   - [x] Pref Loading
   - [x] List View (MD_Card Recycler-View)
   - [x] Deletion
+  - [ ] Star
 - [ ] Myself / Score Board
   - [ ] Login
   - [x] Highest Score
