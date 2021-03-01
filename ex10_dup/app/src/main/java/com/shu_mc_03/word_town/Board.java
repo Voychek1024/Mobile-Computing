@@ -29,6 +29,8 @@ import java.util.Stack;
 
 import javax.crypto.Cipher;
 
+import tyrantgit.explosionfield.ExplosionField;
+
 public class Board extends AppCompatActivity {
 
     private static final String TAG = "DEBUG";
@@ -45,6 +47,8 @@ public class Board extends AppCompatActivity {
     private MyDatabaseHelper helper;
     List<String> test = new ArrayList<>();
     List<String> idx_md = new ArrayList<>();
+
+    private ExplosionField explosionField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +123,9 @@ public class Board extends AppCompatActivity {
         fisher_randomize(shadow, color, color.size());
         init_words(idx_md, test, mode, db);
         fisher_randomize(idx_md, test, test.size());
+
+        explosionField = ExplosionField.attach2Window(this);
+
         Log.d(TAG, "SHUFFLED List: " + test);
         Log.d(TAG, "Index Markdown: " + idx_md);
         int idx = 0;
@@ -144,10 +151,9 @@ public class Board extends AppCompatActivity {
                         }
                         else if (stack_cp.get(0).equals(stack_cp.get(1))) {
                             Log.d(TAG, "Game Judge: " + "Correct!");
-                            // TODO: Destroy Animations?
-
-                            btn_cp.get(0).setAlpha(0.0f);
-                            btn_cp.get(1).setAlpha(0.0f);
+                            // Destroy Animations
+                            explosionField.explode(btn_cp.get(0));
+                            explosionField.explode(btn_cp.get(1));
                             btn_cp.get(0).setClickable(false);
                             btn_cp.get(1).setClickable(false);
                             score += 2;

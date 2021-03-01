@@ -24,8 +24,8 @@ Final Team Work (Android Studio)
       - [x] Button binding 
       - [x] Button Dynamic Color
       - [x] Judgement function
-        - [ ] Destroy Animations
-        - [ ] Credit Animations
+        - [x] Destroy Animations
+        - [x] Credit Animations
     - [x] Game Result
       - [x] Pref Saving
       - [ ] Screenshot
