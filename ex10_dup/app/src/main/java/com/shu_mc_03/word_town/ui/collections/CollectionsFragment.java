@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -81,9 +82,25 @@ public class CollectionsFragment extends Fragment {
         mAdapter = new MyAdapter(dataModelList, root.getContext());
         mRecyclerView.setAdapter(mAdapter);
 
+        // Load Star
+        SharedPreferences pref_star = getContext().getSharedPreferences("star_word", Context.MODE_PRIVATE);
+        Map<String, ?> allEntries = pref_star.getAll();
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            // Log.d(TAG, "mapped values: " + entry.getValue().toString());
+            String[] wa_star = entry.getValue().toString().split(", ");
+            try {
+                // Star create
+                dataModelList.add(new DataModel(wa_star[0], wa_star[1]));
+            }
+            catch (NumberFormatException e) {
+                Log.e(TAG, "onCreateView: ERR");
+            }
+            mAdapter.notifyDataSetChanged();
+        }
+
+
         // Read Pref
         // Load database
-
         MyDatabaseHelper helper = new MyDatabaseHelper(root.getContext(), "Words.db", null, 1);
         SQLiteDatabase db = helper.getReadableDatabase();
         try {

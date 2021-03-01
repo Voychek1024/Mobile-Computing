@@ -25,10 +25,10 @@ For details, please check each folder or specific branches <br />
 #### ex06-09 Personal Work  (Android Studio)
 
 [ex06](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex06) (due 21.1.7) <br />
-![status](https://img.shields.io/badge/status-report--pending-blue)
+![status](https://img.shields.io/badge/status-completed-%23008080)
 
 [ex07](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex07) (due 21.1.14) <br />
-![status](https://img.shields.io/badge/status-report--pending-blue)
+![status](https://img.shields.io/badge/status-completed-%23008080)
 
 [ex08](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex08) (due 21.1.21) <br />
 ![status](https://img.shields.io/badge/status-report--pending-blue)
@@ -39,7 +39,7 @@ For details, please check each folder or specific branches <br />
 #### ex10 Final Team Work  (Android Studio)
 
 [ex10](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex10) (due 21.3.11) <br />
-![status](https://img.shields.io/badge/status-slow%20progress-orange)
+![status](https://img.shields.io/badge/status-abandoned-red)
 
 [ex10_dup](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex10_dup) (due 21.3.11) <br />
-![status](https://img.shields.io/badge/status-working(20%2F24)-yellow)
+![status](https://img.shields.io/badge/status-working(21%2F24)-yellow)
