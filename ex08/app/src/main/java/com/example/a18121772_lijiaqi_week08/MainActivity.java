@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView_title = (TextView) findViewById(R.id.news_title);
         TextView textView_content = (TextView) findViewById(R.id.news_content);
-
+        // List Adapter and OnItemClickListener
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.list_item_show, R.layout.support_simple_spinner_dropdown_item);
         ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(adapter);

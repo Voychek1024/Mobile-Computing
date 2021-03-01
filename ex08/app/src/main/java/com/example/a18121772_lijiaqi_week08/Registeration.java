@@ -35,19 +35,24 @@ public class Registeration extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeration);
+
+        // Gender spinner
         ArrayAdapter<CharSequence> adapter_gender =
                 ArrayAdapter.createFromResource(this, R.array.gender_choice,
                         R.layout.support_simple_spinner_dropdown_item);
         adapter_gender.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         Spinner spinner_gender = (Spinner) findViewById(R.id.spinner_gender);
         spinner_gender.setAdapter(adapter_gender);
+
+        // Profession spinner
         ArrayAdapter<CharSequence> adapter_profession =
                 ArrayAdapter.createFromResource(this, R.array.profession_choice,
                         R.layout.support_simple_spinner_dropdown_item);
         adapter_profession.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         Spinner spinner_profession = (Spinner) findViewById(R.id.spinner_profession);
         spinner_profession.setAdapter(adapter_profession);
-        // TODO: Birthday spinner implementation
+
+        // Age spinner
         ArrayList<String> ages = new ArrayList<String>();
         int thisYear = Calendar.getInstance().get(Calendar.YEAR);
         for (int i = thisYear; i >= 1960; i--) {
@@ -57,6 +62,7 @@ public class Registeration extends AppCompatActivity {
         Spinner spinner_ages = (Spinner) findViewById(R.id.spinner_age);
         spinner_ages.setAdapter(adapter_ages);
 
+        // Buttons binding
         Button button_cancel = (Button) findViewById(R.id.button_cancel);
         Button button_submit = (Button) findViewById(R.id.button_submit);
         button_cancel.setOnClickListener(new View.OnClickListener() {
@@ -70,13 +76,14 @@ public class Registeration extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO: Validator()
                 if (validator()) {
-                    save(); // TODO: save txt to local storage
+                    save(); // save txt to local storage
                     finish();
                 }
             }
         });
     }
 
+    // Sheet Validator
     private boolean validator() {
         EditText editText_name = (EditText) findViewById(R.id.editText_Name);
         EditText editText_stu_num = (EditText) findViewById(R.id.editText_stu_number);
@@ -101,6 +108,7 @@ public class Registeration extends AppCompatActivity {
         Log.d(TAG, "onDestroy: MODIFIED");
     }
 
+    // Java Stream_output
     private void save() {
         Log.i(TAG, "save: SUCCESSFUL JUDGEMENT");
         FileOutputStream stream = null;

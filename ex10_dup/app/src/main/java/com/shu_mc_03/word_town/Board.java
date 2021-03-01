@@ -145,6 +145,7 @@ public class Board extends AppCompatActivity {
                         else if (stack_cp.get(0).equals(stack_cp.get(1))) {
                             Log.d(TAG, "Game Judge: " + "Correct!");
                             // TODO: Destroy Animations?
+
                             btn_cp.get(0).setAlpha(0.0f);
                             btn_cp.get(1).setAlpha(0.0f);
                             btn_cp.get(0).setClickable(false);
