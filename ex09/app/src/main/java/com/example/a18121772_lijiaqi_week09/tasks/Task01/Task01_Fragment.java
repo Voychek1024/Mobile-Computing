@@ -72,7 +72,7 @@ public class Task01_Fragment extends Fragment {
                 if (register(acc, pwd)) {
                     Intent intent = new Intent(v.getContext(), Data_Form.class);
                     intent.putExtra("Status","0");
-                    intent.putExtra("current_acc",acc);
+                    intent.putExtra("current_acc", acc);
                     v.getContext().startActivity(intent);
                 }
             }

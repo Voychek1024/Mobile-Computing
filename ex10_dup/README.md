@@ -11,7 +11,7 @@ Final Team Work (Android Studio)
 ## 进度
 
 - [x] Navigation Bar
-- [ ] Game Field
+- [x] Game Field
   - [x] Level Choice
   - [x] SQLite word database
   - [x] Game Board XML
@@ -28,14 +28,14 @@ Final Team Work (Android Studio)
         - [x] Credit Animations
     - [x] Game Result
       - [x] Pref Saving
-      - [ ] Screenshot
+      - [x] Screenshot
 - [x] Wrong Answer Collections
   - [x] Pref Loading
   - [x] List View (MD_Card Recycler-View)
   - [x] Deletion
   - [x] Star
-- [ ] Myself / Score Board
-  - [ ] Login
+- [x] Myself / Score Board
+  - [x] Login
   - [x] Highest Score
     - [x] Pref Loading
   - [x] Etc..

@@ -1,8 +1,10 @@
 package com.shu_mc_03.word_town.ui.self;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.button.MaterialButton;
+import com.shu_mc_03.word_town.LoginActivity;
 import com.shu_mc_03.word_town.R;
 
 import java.util.ArrayList;
@@ -33,6 +37,7 @@ public class SelfFragment extends Fragment {
 
     String mode_0_cur, mode_1_cur, mode_2_cur;
     String mode_0, mode_1, mode_2;
+    String username;
 
     private SelfViewModel selfViewModel;
 
@@ -61,6 +66,14 @@ public class SelfFragment extends Fragment {
         };
         timer.schedule(task, 1500);
 
+        //Show the username
+        username = getActivity().getIntent().getStringExtra("username");
+        Log.d(TAG, "onCreateView() returned: " + username);
+        // Intent present = getActivity().getIntent();
+        // String username = present.getStringExtra("username");
+        // String username = "";
+        TextView name = root.findViewById(R.id.self_name);
+
         // Highest Score Board
         ListView listView = (ListView) root.findViewById(R.id.list_score_board);
         ArrayList<String> list = new ArrayList<>();
@@ -68,14 +81,14 @@ public class SelfFragment extends Fragment {
         listView.setAdapter(adapter);
         try {
             SharedPreferences pref_cp = getContext().getSharedPreferences("current_game", Context.MODE_PRIVATE);
-            mode_0_cur = pref_cp.getString("MODE_0","0");
-            mode_1_cur = pref_cp.getString("MODE_1","0");
-            mode_2_cur = pref_cp.getString("MODE_2","0");
+            mode_0_cur = pref_cp.getString("MODE_0" + username,"0");
+            mode_1_cur = pref_cp.getString("MODE_1" + username,"0");
+            mode_2_cur = pref_cp.getString("MODE_2" + username,"0");
 
             SharedPreferences pref = getContext().getSharedPreferences("total_data", Context.MODE_PRIVATE);
-            mode_0 = pref.getString("MODE_0", "0");
-            mode_1 = pref.getString("MODE_1", "0");
-            mode_2 = pref.getString("MODE_2", "0");
+            mode_0 = pref.getString("MODE_0" + username, "0");
+            mode_1 = pref.getString("MODE_1" + username, "0");
+            mode_2 = pref.getString("MODE_2" + username, "0");
 
             list.clear();
             list.add("Easy Mode:\t" + (Integer.parseInt(mode_0_cur)>Integer.parseInt(mode_0)?mode_0_cur:mode_0));
@@ -84,9 +97,9 @@ public class SelfFragment extends Fragment {
             adapter.notifyDataSetChanged();
 
             SharedPreferences.Editor editor = getContext().getSharedPreferences("total_data", Context.MODE_PRIVATE).edit();
-            editor.putString("MODE_0", list.get(0).substring("Easy Mode:\t".length()));
-            editor.putString("MODE_1", list.get(1).substring("Normal Mode:\t".length()));
-            editor.putString("MODE_2", list.get(2).substring("Hard Mode:\t".length()));
+            editor.putString("MODE_0" + username, list.get(0).substring("Easy Mode:\t".length()));
+            editor.putString("MODE_1" + username, list.get(1).substring("Normal Mode:\t".length()));
+            editor.putString("MODE_2" + username, list.get(2).substring("Hard Mode:\t".length()));
             editor.apply();
         }
         catch (NullPointerException e) {
@@ -124,8 +137,36 @@ public class SelfFragment extends Fragment {
             }
         });
 
-        // TODO: Login Service
-
+        // Login Service
+        if(username != null)
+            name.setText(username);
+        else
+            name.setText("请登录");
+        Button login = root.findViewById(R.id.prompt_login);
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // present.removeExtra("username");
+                Intent intent = new Intent(root.getContext(), LoginActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
         return root;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                username = data.getStringExtra("username");
+            }
+            else {
+                username = "";
+            }
+            Log.d(TAG, "onActivityResult() returned USERNAME: " + username);
+            getActivity().getIntent().putExtra("username", username);
+            getActivity().recreate();
+        }
     }
 }

@@ -42,4 +42,4 @@ For details, please check each folder or specific branches <br />
 ![status](https://img.shields.io/badge/status-abandoned-red)
 
 [ex10_dup](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex10_dup) (due 21.3.11) <br />
-![status](https://img.shields.io/badge/status-working(22%2F24)-yellow)
+![status](https://img.shields.io/badge/status-still%20working-yellowgreen)

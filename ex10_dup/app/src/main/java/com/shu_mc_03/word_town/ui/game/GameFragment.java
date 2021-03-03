@@ -65,6 +65,9 @@ public class GameFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(root.getContext(), "Easy Mode", Toast.LENGTH_SHORT).show();
                 intent_board.putExtra("MODE", 0);
+                Intent present = getActivity().getIntent();
+                String name = present.getStringExtra("username");
+                intent_board.putExtra("username", name);
                 getContext().startActivity(intent_board);
             }
         });
@@ -73,6 +76,9 @@ public class GameFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(root.getContext(), "Normal Mode", Toast.LENGTH_SHORT).show();
                 intent_board.putExtra("MODE", 1);
+                Intent present = getActivity().getIntent();
+                String name = present.getStringExtra("username");
+                intent_board.putExtra("username", name);
                 getContext().startActivity(intent_board);
             }
         });
@@ -81,6 +87,9 @@ public class GameFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(root.getContext(), "Hard Mode", Toast.LENGTH_SHORT).show();
                 intent_board.putExtra("MODE", 2);
+                Intent present = getActivity().getIntent();
+                String name = present.getStringExtra("username");
+                intent_board.putExtra("username", name);
                 getContext().startActivity(intent_board);
             }
         });

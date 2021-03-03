@@ -26,4 +26,8 @@
     <string name="quit">Quit</string>
     <string name="prompt_delete">Delete</string>
     <string name="prompt_star">Star</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 </resources>

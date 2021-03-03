@@ -1,6 +1,7 @@
 package com.shu_mc_03.word_town;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -71,9 +72,17 @@ public class Board extends AppCompatActivity {
         button_quit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //Show the username
+                Intent present = getIntent();
+                String nameText = present.getStringExtra("username");
+                if(nameText == null)
+                    nameText = "";
+                Log.d(TAG, "USERNAME: " + nameText);
+
                 // SharedPreferences Store: gamemode, score, wrong answer idx
                 SharedPreferences.Editor editor = getSharedPreferences("current_game", MODE_PRIVATE).edit();
-                editor.putString("MODE_"+Integer.toString(mode), String.valueOf(score_cal));
+                editor.putString("MODE_"+Integer.toString(mode) + nameText, String.valueOf(score_cal));
                 String wa_write = String.valueOf(wrong_answer);
                 wa_write = wa_write.substring(1,wa_write.length()-1);
                 editor.putString("MODE_"+Integer.toString(mode)+"_WAIDX", wa_write);

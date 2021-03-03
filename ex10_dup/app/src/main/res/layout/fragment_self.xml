@@ -33,6 +33,7 @@
             android:src="@drawable/ic_baseline_supervised_user_circle_24" />
 
         <TextView
+            android:id="@+id/self_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -75,7 +76,7 @@
 
     <RelativeLayout
         android:layout_width="385dp"
-        android:layout_height="260dp"
+        android:layout_height="220dp"
         android:background="@drawable/score_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -99,7 +100,7 @@
         <ListView
             android:id="@+id/list_score_board"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="160dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="0dp" />
 

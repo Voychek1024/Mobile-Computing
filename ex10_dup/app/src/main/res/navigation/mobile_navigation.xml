@@ -22,4 +22,6 @@
         android:name="com.shu_mc_03.word_town.ui.self.SelfFragment"
         android:label="@string/title_self"
         tools:layout="@layout/fragment_self" />
+
+
 </navigation>
