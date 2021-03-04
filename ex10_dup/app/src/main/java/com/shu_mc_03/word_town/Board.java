@@ -1,6 +1,7 @@
 package com.shu_mc_03.word_town;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.shu_mc_03.word_town.utils.ShotShareUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +45,7 @@ public class Board extends AppCompatActivity {
     Stack<Button> btn_cp = new Stack<Button>();
     int score = 0;
     int score_cal = 0;
+    Activity activity;
     MediaPlayer player;
     Set<String> wrong_answer = new HashSet<String>();
 
@@ -54,6 +58,7 @@ public class Board extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
         setContentView(R.layout.activity_board);
         int mode = getIntent().getIntExtra("MODE", 0);
         Log.d(TAG, "onCreate() returned: GAMEMODE=" + mode);
@@ -96,7 +101,8 @@ public class Board extends AppCompatActivity {
         button_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Screenshot
+                // Screenshot
+                ShotShareUtil.shotShare(activity);
             }
         });
         button_quit.setClickable(false);

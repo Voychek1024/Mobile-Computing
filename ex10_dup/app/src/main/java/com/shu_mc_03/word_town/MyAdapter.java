@@ -84,7 +84,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             button_star.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO: Star
+                    // Star
                     star_item(getAdapterPosition());
                 }
             });

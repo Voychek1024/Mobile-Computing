@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.self.SelfFragment">
+    tools:context=".ui.self.SelfFragment"
+    android:background="@drawable/background_4">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="385dp"
         android:layout_height="150dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/self_background"
+        android:background="@drawable/game_result"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -77,7 +78,7 @@
     <RelativeLayout
         android:layout_width="385dp"
         android:layout_height="220dp"
-        android:background="@drawable/score_background"
+        android:background="@drawable/game_result"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -90,8 +91,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/score_board"
             android:textColor="@color/black"
@@ -102,19 +103,22 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="0dp" />
+            android:layout_marginBottom="0dp"
+            android:layout_marginStart="30dp">
+
+        </ListView>
 
     </RelativeLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mat_clear_all"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:text="@string/prompt_clear_all"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="17sp"
         app:icon="@drawable/ic_baseline_clear_all_24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -122,7 +126,8 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.743" />
+        app:layout_constraintVertical_bias="0.743"
+        android:backgroundTint="#DAA520"/>
 
     <TextView
         android:id="@+id/text_notifications"
@@ -142,13 +147,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/mat_settings"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:text="@string/prompt_settings"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="17sp"
         app:icon="@drawable/ic_baseline_settings_24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -156,6 +161,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintVertical_bias="0.844"
+        android:backgroundTint="#DAA520"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
