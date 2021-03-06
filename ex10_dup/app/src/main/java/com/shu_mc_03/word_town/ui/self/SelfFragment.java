@@ -80,12 +80,12 @@ public class SelfFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, list);
         listView.setAdapter(adapter);
         try {
-            SharedPreferences pref_cp = getContext().getSharedPreferences("current_game", Context.MODE_PRIVATE);
+            SharedPreferences pref_cp = getContext().getSharedPreferences("current_game"+username, Context.MODE_PRIVATE);
             mode_0_cur = pref_cp.getString("MODE_0" + username,"0");
             mode_1_cur = pref_cp.getString("MODE_1" + username,"0");
             mode_2_cur = pref_cp.getString("MODE_2" + username,"0");
 
-            SharedPreferences pref = getContext().getSharedPreferences("total_data", Context.MODE_PRIVATE);
+            SharedPreferences pref = getContext().getSharedPreferences("total_data"+username, Context.MODE_PRIVATE);
             mode_0 = pref.getString("MODE_0" + username, "0");
             mode_1 = pref.getString("MODE_1" + username, "0");
             mode_2 = pref.getString("MODE_2" + username, "0");
@@ -96,7 +96,7 @@ public class SelfFragment extends Fragment {
             list.add("Hard Mode:\t" + (Integer.parseInt(mode_2_cur)>Integer.parseInt(mode_2)?mode_2_cur:mode_2));
             adapter.notifyDataSetChanged();
 
-            SharedPreferences.Editor editor = getContext().getSharedPreferences("total_data", Context.MODE_PRIVATE).edit();
+            SharedPreferences.Editor editor = getContext().getSharedPreferences("total_data"+username, Context.MODE_PRIVATE).edit();
             editor.putString("MODE_0" + username, list.get(0).substring("Easy Mode:\t".length()));
             editor.putString("MODE_1" + username, list.get(1).substring("Normal Mode:\t".length()));
             editor.putString("MODE_2" + username, list.get(2).substring("Hard Mode:\t".length()));
@@ -119,13 +119,13 @@ public class SelfFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // Deleting Prefs
-                                SharedPreferences pref_1 = getContext().getSharedPreferences("current_game", Context.MODE_PRIVATE);
+                                SharedPreferences pref_1 = getContext().getSharedPreferences("current_game"+username, Context.MODE_PRIVATE);
                                 pref_1.edit().clear().apply();
-                                SharedPreferences pref_2 = getContext().getSharedPreferences("total_data", Context.MODE_PRIVATE);
+                                SharedPreferences pref_2 = getContext().getSharedPreferences("total_data"+username, Context.MODE_PRIVATE);
                                 pref_2.edit().clear().apply();
-                                SharedPreferences pref_3 = getContext().getSharedPreferences("star_word", Context.MODE_PRIVATE);
+                                SharedPreferences pref_3 = getContext().getSharedPreferences("star_word"+username, Context.MODE_PRIVATE);
                                 pref_3.edit().clear().apply();
-                                SharedPreferences pref_4 = getContext().getSharedPreferences("del_word", Context.MODE_PRIVATE);
+                                SharedPreferences pref_4 = getContext().getSharedPreferences("del_word"+username, Context.MODE_PRIVATE);
                                 pref_4.edit().clear().apply();
                                 dialog.dismiss();
                             }

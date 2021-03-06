@@ -6,13 +6,15 @@ public class DataModel {
     private boolean starred;
     private final int db_index;
     private final int db_mode;
+    private final String username;
 
-    public DataModel(String wd, String exp, boolean star, int mode, int index) {
+    public DataModel(String wd, String exp, boolean star, int mode, int index, String user) {
         word = wd;
         explanation = exp;
         starred = star;
         db_index = index;
         db_mode = mode;
+        username = user;
     }
     public String getWord() {
         return word;
@@ -31,5 +33,8 @@ public class DataModel {
     }
     public int getDb_index() {
         return db_index;
+    }
+    public String getUsername() {
+        return username;
     }
 }

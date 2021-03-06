@@ -101,7 +101,7 @@ public class CollectionsFragment extends Fragment {
 
         // TODO: Rewrite Load Del and Load Star
         // Load Del
-        SharedPreferences pref_del = getContext().getSharedPreferences("del_word", Context.MODE_PRIVATE);
+        SharedPreferences pref_del = getContext().getSharedPreferences("del_word"+nameText, Context.MODE_PRIVATE);
         Map<String, ?> allDeletes = pref_del.getAll();
         for (Map.Entry<String, ?> entry : allDeletes.entrySet()) {
             String[] wa_del = entry.getValue().toString().split("/");
@@ -114,7 +114,7 @@ public class CollectionsFragment extends Fragment {
         }
 
         // Load Star
-        SharedPreferences pref_star = getContext().getSharedPreferences("star_word", Context.MODE_PRIVATE);
+        SharedPreferences pref_star = getContext().getSharedPreferences("star_word"+nameText, Context.MODE_PRIVATE);
         Map<String, ?> allEntries = pref_star.getAll();
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
             String[] wa_star = entry.getValue().toString().split("/");
@@ -122,7 +122,7 @@ public class CollectionsFragment extends Fragment {
             try {
                 // Star create
                 search = init_word_idx(wa_star[1], Integer.parseInt(wa_star[0]), db);
-                dataModelList.add(new DataModel(search[0], search[1], true, Integer.parseInt(wa_star[0]), Integer.parseInt(wa_star[1])));
+                dataModelList.add(new DataModel(search[0], search[1], true, Integer.parseInt(wa_star[0]), Integer.parseInt(wa_star[1]), nameText));
                 star_set.add(wa_star[0]+"/"+wa_star[1]);
             }
             catch (NumberFormatException e) {
@@ -134,7 +134,7 @@ public class CollectionsFragment extends Fragment {
 
         // Read Pref
         // Load database
-        SharedPreferences pref = getContext().getSharedPreferences("current_game", Context.MODE_PRIVATE);
+        SharedPreferences pref = getContext().getSharedPreferences("current_game"+nameText, Context.MODE_PRIVATE);
         wa_0 = pref.getString("MODE_0_WAIDX", "");
         wa_1 = pref.getString("MODE_1_WAIDX", "");
         wa_2 = pref.getString("MODE_2_WAIDX", "");
@@ -148,7 +148,7 @@ public class CollectionsFragment extends Fragment {
                 String[] result = init_word_idx(item, 0, db);
                 // TODO: Rewrite MyAdapter: del_item / star_item store them with db_index and db_mode
                 if (!star_set.contains("0/"+item) && !del_set.contains("0/"+item)) {
-                    dataModelList.add(new DataModel(result[0], result[1], false, 0, Integer.parseInt(item)));
+                    dataModelList.add(new DataModel(result[0], result[1], false, 0, Integer.parseInt(item), nameText));
                 }
             }
         }
@@ -161,7 +161,7 @@ public class CollectionsFragment extends Fragment {
                 // Normal DB
                 String[] result = init_word_idx(item,1, db);
                 if (!star_set.contains("1/"+item) && !del_set.contains("1/"+item)) {
-                    dataModelList.add(new DataModel(result[0], result[1], false, 1, Integer.parseInt(item)));
+                    dataModelList.add(new DataModel(result[0], result[1], false, 1, Integer.parseInt(item), nameText));
                 }
             }
         }
@@ -174,7 +174,7 @@ public class CollectionsFragment extends Fragment {
                 // Hard DB
                 String[] result = init_word_idx(item,2, db);
                 if (!star_set.contains("2/"+item) && !del_set.contains("2/"+item)) {
-                    dataModelList.add(new DataModel(result[0], result[1], false, 2, Integer.parseInt(item)));
+                    dataModelList.add(new DataModel(result[0], result[1], false, 2, Integer.parseInt(item), nameText));
                 }
             }
         }

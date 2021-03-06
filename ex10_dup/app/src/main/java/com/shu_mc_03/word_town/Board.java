@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -64,11 +66,10 @@ public class Board extends AppCompatActivity {
         Log.d(TAG, "onCreate() returned: GAMEMODE=" + mode);
         List<String> color = Arrays.asList("#5B9D74", "#FFE666", "#7D93C8", "#364E4A", "#196432", "#7D93C8", "#C9B8FF", "#F5C27D",
                 "#5B9D74", "#FFE666", "#7D93C8", "#364E4A", "#196432", "#7D93C8", "#C9B8FF", "#F5C27D");
-        Button[] buttons =
-                {findViewById(R.id.button_0_0), findViewById(R.id.button_0_1), findViewById(R.id.button_0_2), findViewById(R.id.button_0_3),
+        List<Button> buttons = Arrays.asList(findViewById(R.id.button_0_0), findViewById(R.id.button_0_1), findViewById(R.id.button_0_2), findViewById(R.id.button_0_3),
                         findViewById(R.id.button_1_0), findViewById(R.id.button_1_1), findViewById(R.id.button_1_2), findViewById(R.id.button_1_3),
                         findViewById(R.id.button_2_0), findViewById(R.id.button_2_1), findViewById(R.id.button_2_2), findViewById(R.id.button_2_3),
-                        findViewById(R.id.button_3_0), findViewById(R.id.button_3_1), findViewById(R.id.button_3_2), findViewById(R.id.button_3_3)};
+                        findViewById(R.id.button_3_0), findViewById(R.id.button_3_1), findViewById(R.id.button_3_2), findViewById(R.id.button_3_3));
         TextView score_dt = (TextView) findViewById(R.id.dynamic_score);
         RelativeLayout result = (RelativeLayout) findViewById(R.id.relativeLayout3);
         result.setAlpha(0.0f);
@@ -86,7 +87,7 @@ public class Board extends AppCompatActivity {
                 Log.d(TAG, "USERNAME: " + nameText);
 
                 // SharedPreferences Store: gamemode, score, wrong answer idx
-                SharedPreferences.Editor editor = getSharedPreferences("current_game", MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = getSharedPreferences("current_game"+nameText, MODE_PRIVATE).edit();
                 editor.putString("MODE_"+Integer.toString(mode) + nameText, String.valueOf(score_cal));
                 String wa_write = String.valueOf(wrong_answer);
                 wa_write = wa_write.substring(1,wa_write.length()-1);
@@ -139,7 +140,9 @@ public class Board extends AppCompatActivity {
         init_words(idx_md, test, mode, db);
         fisher_randomize(idx_md, test, test.size());
 
+        // Animations
         explosionField = ExplosionField.attach2Window(this);
+        final Animation animShake = AnimationUtils.loadAnimation(this, R.anim.shake);
 
         Log.d(TAG, "SHUFFLED List: " + test);
         Log.d(TAG, "Index Markdown: " + idx_md);
@@ -157,12 +160,14 @@ public class Board extends AppCompatActivity {
                     Log.d(TAG, "Pushed Button: " + button.getId());
                     btn_cp.push(button);
                     Log.d(TAG, "Judgement Stack: " + stack_cp);
-
+                    String color_old = color.get(buttons.indexOf(button));
+                    button.setBackgroundColor(Color.parseColor("#C0C0C0"));
                     if (click_count == 2) {
                         click_count = 0;
                         Log.d(TAG, "Judgement Stack Final: " + stack_cp);
                         if (btn_cp.get(0).equals(btn_cp.get(1))) {
                             Log.d(TAG, "Game Judge: " + "Same....");
+                            btn_cp.get(0).setBackgroundColor(Color.parseColor(color_old));
                         }
                         else if (stack_cp.get(0).equals(stack_cp.get(1))) {
                             Log.d(TAG, "Game Judge: " + "Correct!");
@@ -189,6 +194,9 @@ public class Board extends AppCompatActivity {
                             Log.d(TAG, "Game Judge: " + "Wrong...");
                             wrong_answer.add(stack_cp.get(0));
                             wrong_answer.add(stack_cp.get(1));
+                            btn_cp.get(0).startAnimation(animShake);
+                            btn_cp.get(1).startAnimation(animShake);
+                            switch_color(buttons, color);
                         }
                         stack_cp.clear();
                         btn_cp.clear();
@@ -285,6 +293,21 @@ public class Board extends AppCompatActivity {
                 arr.set(i, arr.get(j));
                 arr.set(j, temp);
             }
+        }
+    }
+
+    private void switch_color(List<Button> buttons, List<String> colors) {
+        int j = 0;
+        Random r = new Random();
+        for (int i = 16 - 1; i > 0; i--) {
+            int k = r.nextInt(i + 1);
+            String temp = colors.get(i);
+            colors.set(i, colors.get(k));
+            colors.set(k, temp);
+        }
+        for (Button button : buttons) {
+            button.setBackgroundColor(Color.parseColor(colors.get(j)));
+            j += 1;
         }
     }
 }
