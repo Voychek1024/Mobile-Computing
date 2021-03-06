@@ -127,6 +127,7 @@ public class SelfFragment extends Fragment {
                                 pref_3.edit().clear().apply();
                                 SharedPreferences pref_4 = getContext().getSharedPreferences("del_word"+username, Context.MODE_PRIVATE);
                                 pref_4.edit().clear().apply();
+                                getActivity().recreate();
                                 dialog.dismiss();
                             }
                         })

@@ -40,9 +40,13 @@ import tyrantgit.explosionfield.ExplosionField;
 public class Board extends AppCompatActivity {
 
     private static final String TAG = "DEBUG";
+
+    boolean doubleBackToExitPressedOnce = false;
+
     int time_usage = 0;
     boolean on_play = true;
     int click_count = 0;
+    int correct_3 = 0;
     Stack<String> stack_cp = new Stack<String>();
     Stack<Button> btn_cp = new Stack<Button>();
     int score = 0;
@@ -62,8 +66,20 @@ public class Board extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         activity = this;
         setContentView(R.layout.activity_board);
+
         int mode = getIntent().getIntExtra("MODE", 0);
         Log.d(TAG, "onCreate() returned: GAMEMODE=" + mode);
+
+        // Load SFX
+        List<MediaPlayer> players = Arrays.asList(MediaPlayer.create(this, R.raw.error),
+                MediaPlayer.create(this, R.raw.great),
+                MediaPlayer.create(this, R.raw.success),
+                MediaPlayer.create(this, R.raw.photo));
+        for (MediaPlayer _player : players) {
+            _player.setLooping(false);
+            _player.setVolume(100, 100);
+        }
+
         List<String> color = Arrays.asList("#5B9D74", "#FFE666", "#7D93C8", "#364E4A", "#196432", "#7D93C8", "#C9B8FF", "#F5C27D",
                 "#5B9D74", "#FFE666", "#7D93C8", "#364E4A", "#196432", "#7D93C8", "#C9B8FF", "#F5C27D");
         List<Button> buttons = Arrays.asList(findViewById(R.id.button_0_0), findViewById(R.id.button_0_1), findViewById(R.id.button_0_2), findViewById(R.id.button_0_3),
@@ -103,6 +119,7 @@ public class Board extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Screenshot
+                players.get(3).start();
                 ShotShareUtil.shotShare(activity);
             }
         });
@@ -112,7 +129,7 @@ public class Board extends AppCompatActivity {
         TextView total_score = (TextView) findViewById(R.id.total_score);
 
         // Background Music
-        player = MediaPlayer.create(this, R.raw.bankrupt_sea);
+        player = MediaPlayer.create(this, R.raw.aquarium);
         player.setLooping(true);
         player.setVolume(100, 100);
         player.start();
@@ -171,6 +188,11 @@ public class Board extends AppCompatActivity {
                         }
                         else if (stack_cp.get(0).equals(stack_cp.get(1))) {
                             Log.d(TAG, "Game Judge: " + "Correct!");
+                            correct_3 += 1;
+                            if (correct_3 == 3) {
+                                players.get(1).start();
+                                correct_3 = 0;
+                            }
                             // Destroy Animations
                             explosionField.explode(btn_cp.get(0));
                             explosionField.explode(btn_cp.get(1));
@@ -181,6 +203,7 @@ public class Board extends AppCompatActivity {
                             if (score == 16) {
                                 handler.removeCallbacks(r);
                                 // Pop Game Result
+                                players.get(2).start();
                                 player.stop();
                                 total_time.setText(Integer.toString(time_usage));
                                 score_cal = (int) (score * (1.0/time_usage) * 500);
@@ -192,6 +215,8 @@ public class Board extends AppCompatActivity {
                         }
                         else {
                             Log.d(TAG, "Game Judge: " + "Wrong...");
+                            correct_3 = 0;
+                            players.get(0).start();
                             wrong_answer.add(stack_cp.get(0));
                             wrong_answer.add(stack_cp.get(1));
                             btn_cp.get(0).startAnimation(animShake);
@@ -309,5 +334,21 @@ public class Board extends AppCompatActivity {
             button.setBackgroundColor(Color.parseColor(colors.get(j)));
             j += 1;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            player.stop();
+        }
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Click BACK again to exit", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }
