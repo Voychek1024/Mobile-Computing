@@ -169,7 +169,7 @@ public class SelfFragment extends Fragment {
             if (resultCode == Activity.RESULT_OK) {
                 username = data.getStringExtra("username");
             }
-            else {
+            else if (username==null || username.equals("")){
                 username = "";
             }
             Log.d(TAG, "onActivityResult() returned USERNAME: " + username);
