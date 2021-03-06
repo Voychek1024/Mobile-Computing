@@ -83,6 +83,12 @@ public class CollectionsFragment extends Fragment {
             nameText = "";
         }
 
+        // Load Database
+        MyDatabaseHelper helper = new MyDatabaseHelper(root.getContext(), "Words.db", null, 1);
+        SQLiteDatabase db = helper.getReadableDatabase();
+        String[] search;
+        Set<String> star_set = new HashSet<>();
+        Set<String> del_set = new HashSet<>();
 
         // RecycleView with MD_Cards
         mRecyclerView = root.findViewById(R.id.recycler);
@@ -93,15 +99,31 @@ public class CollectionsFragment extends Fragment {
         mAdapter = new MyAdapter(dataModelList, root.getContext());
         mRecyclerView.setAdapter(mAdapter);
 
+        // TODO: Rewrite Load Del and Load Star
+        // Load Del
+        SharedPreferences pref_del = getContext().getSharedPreferences("del_word", Context.MODE_PRIVATE);
+        Map<String, ?> allDeletes = pref_del.getAll();
+        for (Map.Entry<String, ?> entry : allDeletes.entrySet()) {
+            String[] wa_del = entry.getValue().toString().split("/");
+            try {
+                del_set.add(wa_del[0]+"/"+wa_del[1]);
+            }
+            catch (NumberFormatException e) {
+                Log.e(TAG, "NO DEL WORD FOUND");
+            }
+        }
+
         // Load Star
         SharedPreferences pref_star = getContext().getSharedPreferences("star_word", Context.MODE_PRIVATE);
         Map<String, ?> allEntries = pref_star.getAll();
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            // Log.d(TAG, "mapped values: " + entry.getValue().toString());
-            String[] wa_star = entry.getValue().toString().split(", ");
+            String[] wa_star = entry.getValue().toString().split("/");
+            Log.d(TAG, "LOAD STAR: " + Arrays.toString(wa_star));
             try {
                 // Star create
-                dataModelList.add(new DataModel(wa_star[0], wa_star[1]));
+                search = init_word_idx(wa_star[1], Integer.parseInt(wa_star[0]), db);
+                dataModelList.add(new DataModel(search[0], search[1], true, Integer.parseInt(wa_star[0]), Integer.parseInt(wa_star[1])));
+                star_set.add(wa_star[0]+"/"+wa_star[1]);
             }
             catch (NumberFormatException e) {
                 Log.e(TAG, "onCreateView: ERR");
@@ -112,56 +134,52 @@ public class CollectionsFragment extends Fragment {
 
         // Read Pref
         // Load database
-        MyDatabaseHelper helper = new MyDatabaseHelper(root.getContext(), "Words.db", null, 1);
-        SQLiteDatabase db = helper.getReadableDatabase();
+        SharedPreferences pref = getContext().getSharedPreferences("current_game", Context.MODE_PRIVATE);
+        wa_0 = pref.getString("MODE_0_WAIDX", "");
+        wa_1 = pref.getString("MODE_1_WAIDX", "");
+        wa_2 = pref.getString("MODE_2_WAIDX", "");
+        String[] wa_idx_0 = wa_0.split(", ");
+        String[] wa_idx_1 = wa_1.split(", ");
+        String[] wa_idx_2 = wa_2.split(", ");
         try {
-            SharedPreferences pref = getContext().getSharedPreferences("current_game", Context.MODE_PRIVATE);
-            wa_0 = pref.getString("MODE_0_WAIDX", "");
-            wa_1 = pref.getString("MODE_1_WAIDX", "");
-            wa_2 = pref.getString("MODE_2_WAIDX", "");
-            String[] wa_idx_0 = wa_0.split(", ");
-            String[] wa_idx_1 = wa_1.split(", ");
-            String[] wa_idx_2 = wa_2.split(", ");
-            try {
-                for (String item : wa_idx_0) {
-                    // Easy DB
-                    /*int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
-                    dataModelList.add(new DataModel(test[result], test[result + 1]))*/;
-                    Log.d(TAG, "WA_GET_E: " + Arrays.toString(wa_idx_0));
-                    String[] result = init_word_idx(item, 0, db);
-                    dataModelList.add(new DataModel(result[0], result[1]));
+            Log.d(TAG, "WA_GET_E: " + Arrays.toString(wa_idx_0));
+            for (String item : wa_idx_0) {
+                // Easy DB
+                String[] result = init_word_idx(item, 0, db);
+                // TODO: Rewrite MyAdapter: del_item / star_item store them with db_index and db_mode
+                if (!star_set.contains("0/"+item) && !del_set.contains("0/"+item)) {
+                    dataModelList.add(new DataModel(result[0], result[1], false, 0, Integer.parseInt(item)));
                 }
-            }
-            catch (NumberFormatException e) {
-                Log.e(TAG, "onCreateView: ERR");
-            }
-            try {
-                for (String item : wa_idx_1) {
-                    // Easy DB
-                    /*int result = Arrays.asList(idx_md).indexOf(Integer.parseInt(item));
-                    dataModelList.add(new DataModel(test[result], test[result + 1]))*/;
-                    Log.d(TAG, "WA_GET_N: " + Arrays.toString(wa_idx_1));
-                    String[] result = init_word_idx(item,1, db);
-                    dataModelList.add(new DataModel(result[0], result[1]));
-                }
-            }
-            catch (NumberFormatException e) {
-                Log.e(TAG, "onCreateView: ERR");
-            }
-            try {
-                Log.d(TAG, "WA_GET_H: " + Arrays.toString(wa_idx_2));
-                for (String item : wa_idx_2) {
-                    // Hard DB
-                    String[] result = init_word_idx(item,2, db);
-                    dataModelList.add(new DataModel(result[0], result[1]));
-                }
-            }
-            catch (NumberFormatException e) {
-                Log.e(TAG, "onCreateView: ERR");
             }
         }
-        catch (Exception e) {
-            Log.e(TAG, "onCreateView: ERR", e);
+        catch (NumberFormatException e) {
+            Log.e(TAG, "onCreateView: NO E_WA");
+        }
+        try {
+            Log.d(TAG, "WA_GET_N: " + Arrays.toString(wa_idx_1));
+            for (String item : wa_idx_1) {
+                // Normal DB
+                String[] result = init_word_idx(item,1, db);
+                if (!star_set.contains("1/"+item) && !del_set.contains("1/"+item)) {
+                    dataModelList.add(new DataModel(result[0], result[1], false, 1, Integer.parseInt(item)));
+                }
+            }
+        }
+        catch (NumberFormatException e) {
+            Log.e(TAG, "onCreateView: NO N_WA");
+        }
+        try {
+            Log.d(TAG, "WA_GET_H: " + Arrays.toString(wa_idx_2));
+            for (String item : wa_idx_2) {
+                // Hard DB
+                String[] result = init_word_idx(item,2, db);
+                if (!star_set.contains("2/"+item) && !del_set.contains("2/"+item)) {
+                    dataModelList.add(new DataModel(result[0], result[1], false, 2, Integer.parseInt(item)));
+                }
+            }
+        }
+        catch (NumberFormatException e) {
+            Log.e(TAG, "onCreateView: NO H_WA");
         }
         mAdapter.notifyDataSetChanged();
         return root;

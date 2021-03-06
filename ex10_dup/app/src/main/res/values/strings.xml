@@ -10,7 +10,7 @@
     <string name="prompt_hard">Hard</string>
     <string name="des_avatar">avatar</string>
     <string name="prompt_login">登录</string>
-    <string name="text_bio">点击按钮以登录</string>
+    <string name="text_bio">点击按钮以登录/切换</string>
     <string name="text_username">请登录</string>
     <string name="prompt_settings">设置</string>
     <string name="prompt_clear_all">清除全部数据</string>

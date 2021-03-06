@@ -2,6 +2,7 @@ package com.shu_mc_03.word_town;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,20 +64,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public void bindData(DataModel dataModel, Context context) {
             word_textView.setText(dataModel.getWord());
             exp_textView.setText(dataModel.getExplanation());
+            if (dataModel.getStarred()) {
+                Log.i(TAG, "bindData: STAR LOADED");
+                word_textView.setTextColor(Color.parseColor("#FF007C"));
+            }
             button_del.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     // Del
                     try {
                         SharedPreferences pref = itemView.getContext().getSharedPreferences("star_word", Context.MODE_PRIVATE);
-                        String look_value = dataModelList.get(getAdapterPosition()).getWord() + ", " + dataModelList.get(getAdapterPosition()).getExplanation();
+                        String look_value = dataModelList.get(getAdapterPosition()).getDb_mode() + "/" + dataModelList.get(getAdapterPosition()).getDb_index();
                         String key_found = find_key(pref, look_value);
                         SharedPreferences.Editor editor = itemView.getContext().getSharedPreferences("star_word", Context.MODE_PRIVATE).edit();
                         editor.remove(key_found);
                         editor.apply();
                     }
                     catch (NullPointerException e) {
-                        Log.e(TAG, "NOT FOUND");
+                        Log.e(TAG, "NOT FOUND IN STAR");
                     }
                     delete_item(getAdapterPosition());
                 }
@@ -99,19 +104,31 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
         private void delete_item(int pos) {
             Toast.makeText(itemView.getContext(), "DEL", Toast.LENGTH_SHORT).show();
+
+            Random r = new Random();
+            int i = r.nextInt();
+
+            SharedPreferences.Editor editor = itemView.getContext().getSharedPreferences("del_word", Context.MODE_PRIVATE).edit();
+            String editor_write = Integer.toString(dataModelList.get(pos).getDb_mode())+"/"+Integer.toString(dataModelList.get(pos).getDb_index());
+            editor.putString("DELWD"+Integer.toString(i), editor_write);
+            editor.apply();
+
             dataModelList.remove(pos);
             notifyDataSetChanged();
         }
         private void star_item(int pos) {
-            Log.d(TAG, "star_item() returned: " + dataModelList.get(pos).getWord() + "\t" + dataModelList.get(pos).getExplanation());
+            Log.d(TAG, "star_item() returned: " + dataModelList.get(pos).getWord() + " " + dataModelList.get(pos).getExplanation());
+            dataModelList.get(pos).setStarred();
+
 
             Random r = new Random();
             int i = r.nextInt();
 
             SharedPreferences.Editor editor = itemView.getContext().getSharedPreferences("star_word", Context.MODE_PRIVATE).edit();
-            String editor_write = dataModelList.get(pos).getWord() + ", " + dataModelList.get(pos).getExplanation();
-            editor.putString("STWD_"+Integer.toString(i), editor_write);
+            String editor_write = Integer.toString(dataModelList.get(pos).getDb_mode())+"/"+Integer.toString(dataModelList.get(pos).getDb_index());
+            editor.putString("STWD"+Integer.toString(i), editor_write);
             editor.apply();
+            notifyDataSetChanged();
         }
     }
 }

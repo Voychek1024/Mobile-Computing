@@ -123,6 +123,10 @@ public class SelfFragment extends Fragment {
                                 pref_1.edit().clear().apply();
                                 SharedPreferences pref_2 = getContext().getSharedPreferences("total_data", Context.MODE_PRIVATE);
                                 pref_2.edit().clear().apply();
+                                SharedPreferences pref_3 = getContext().getSharedPreferences("star_word", Context.MODE_PRIVATE);
+                                pref_3.edit().clear().apply();
+                                SharedPreferences pref_4 = getContext().getSharedPreferences("del_word", Context.MODE_PRIVATE);
+                                pref_4.edit().clear().apply();
                                 dialog.dismiss();
                             }
                         })
@@ -138,11 +142,15 @@ public class SelfFragment extends Fragment {
         });
 
         // Login Service
-        if(username != null)
+        Button login = root.findViewById(R.id.prompt_login);
+        if(username!=null && !username.equals(""))
+        {
             name.setText(username);
+            login.setText("切换");
+        }
         else
             name.setText("请登录");
-        Button login = root.findViewById(R.id.prompt_login);
+
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
