@@ -115,21 +115,54 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             editor.apply();
 
             dataModelList.remove(pos);
-            notifyDataSetChanged();
+            notifyItemRemoved(pos);
         }
         private void star_item(int pos) {
             Log.d(TAG, "star_item() returned: " + dataModelList.get(pos).getWord() + " " + dataModelList.get(pos).getExplanation());
             dataModelList.get(pos).setStarred();
 
+            if (dataModelList.get(pos).getStarred()) {
+                Random r = new Random();
+                int i = r.nextInt();
 
-            Random r = new Random();
-            int i = r.nextInt();
+                SharedPreferences pref = itemView.getContext().getSharedPreferences("star_word"+dataModelList.get(getAdapterPosition()).getUsername(), Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                try {
+                    String key_found = find_key(pref, dataModelList.get(pos).getDb_mode()+"/"+dataModelList.get(pos).getDb_index());
+                }
+                catch (NullPointerException e) {
+                    String editor_write = Integer.toString(dataModelList.get(pos).getDb_mode())+"/"+Integer.toString(dataModelList.get(pos).getDb_index());
+                    editor.putString("STWD"+Integer.toString(i), editor_write);
+                    editor.apply();
 
-            SharedPreferences.Editor editor = itemView.getContext().getSharedPreferences("star_word"+dataModelList.get(getAdapterPosition()).getUsername(), Context.MODE_PRIVATE).edit();
-            String editor_write = Integer.toString(dataModelList.get(pos).getDb_mode())+"/"+Integer.toString(dataModelList.get(pos).getDb_index());
-            editor.putString("STWD"+Integer.toString(i), editor_write);
-            editor.apply();
-            notifyDataSetChanged();
+                    DataModel star_model = dataModelList.get(pos);
+                    dataModelList.remove(dataModelList.get(pos));
+                    dataModelList.add(0, star_model);
+                    Log.i(TAG, "star_item: NOTIFIED CHANGE STARRED");
+                    notifyItemChanged(pos);
+                    notifyItemMoved(pos, 0);
+                }
+            }
+
+            else {
+                try {
+                    SharedPreferences pref = itemView.getContext().getSharedPreferences("star_word"+dataModelList.get(getAdapterPosition()).getUsername(), Context.MODE_PRIVATE);
+                    String key_found = find_key(pref, dataModelList.get(getAdapterPosition()).getDb_mode() + "/" + dataModelList.get(getAdapterPosition()).getDb_index());
+                    SharedPreferences.Editor editor = itemView.getContext().getSharedPreferences("star_word"+dataModelList.get(getAdapterPosition()).getUsername(), Context.MODE_PRIVATE).edit();
+                    editor.remove(key_found);
+                    editor.apply();
+
+                    DataModel star_model = dataModelList.get(pos);
+                    dataModelList.remove(dataModelList.get(pos));
+                    dataModelList.add(star_model);
+                    Log.i(TAG, "star_item: NOTIFIED CHANGE UN-STARRED");
+                    notifyItemChanged(pos);
+                    notifyItemMoved(pos, dataModelList.size());
+                }
+                catch (NullPointerException e) {
+                    Log.e(TAG, "NOT FOUND IN STAR");
+                }
+            }
         }
     }
 }
