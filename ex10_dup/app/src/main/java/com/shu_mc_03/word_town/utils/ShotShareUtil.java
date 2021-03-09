@@ -7,9 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Environment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.core.content.FileProvider;
 
@@ -29,12 +31,14 @@ import java.io.IOException;
  */
 public class ShotShareUtil {
 
+    private static String TAG = "SCREENSHOT DEBUG";
+
     /**截屏分享，供外部调用**/
     public static void shotShare(Context context){
         //截屏
         String path=screenShot(context);
         //分享
-        if(StringUtil.isNotEmpty(path)){
+        if(!isEmpty(path)){
             ShareImage(context,path);
         }
     }
@@ -47,7 +51,7 @@ public class ShotShareUtil {
             try {
                 // 图片文件路径
                 imagePath = getDiskCachePath()+"share.png";
-                LogUtil.i("====imagePath====" + imagePath);
+                Log.i(TAG, "screenShot: PATH: " + imagePath);
                 File file = new File(imagePath);
                 FileOutputStream os = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
@@ -55,7 +59,7 @@ public class ShotShareUtil {
                 os.close();
                 return imagePath;
             } catch (Exception e) {
-                LogUtil.e("====screenshot:error====" + e.getMessage());
+                Log.e(TAG, "screenShot: ERR", e);
             }
         }
         return null;
@@ -73,7 +77,7 @@ public class ShotShareUtil {
                 context.startActivity(chooser);
             }
         } else {
-            ToastUtil.shortShow(context,"先截屏，再分享");
+            Toast.makeText(context, "NEED TO TAKE SCREENSHOT FIRST", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -143,7 +147,7 @@ public class ShotShareUtil {
 
     /**判断文件路径的有效性**/
     private static boolean usefulFilePath(String path) {
-        if (StringUtil.isNotEmpty(path)) {
+        if (!isEmpty(path)) {
             String tempPath = path + "demo.txt";
             File file = new File(tempPath);
             if (file.exists()) {
@@ -160,6 +164,18 @@ public class ShotShareUtil {
             }
         }
         return false;
+    }
+
+    public static boolean isEmpty(String input) {
+        if (input == null || input.trim().length() == 0 || input.equals("null"))
+            return true;
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c != ' ' && c != '\t' && c != '\r' && c != '\n') {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

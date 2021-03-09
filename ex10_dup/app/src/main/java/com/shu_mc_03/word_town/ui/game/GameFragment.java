@@ -72,7 +72,7 @@ public class GameFragment extends Fragment {
         String username = getActivity().getIntent().getStringExtra("username");
         if (username==null || username.equals("")) {
             username = "";
-            Snackbar.make(getActivity().findViewById(R.id.coordinator_layout), "看起来您并未登录\n您可以进行游戏，但是游戏将不会被记录", Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(getActivity().findViewById(R.id.coordinator_layout), "看起来您并未登录\n您可以进行游戏，但是游戏将不会被记录", Snackbar.LENGTH_LONG)
                     .setAction("登录", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
