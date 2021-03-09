@@ -104,7 +104,7 @@ public class Board extends AppCompatActivity {
 
                 // SharedPreferences Store: gamemode, score, wrong answer idx
                 SharedPreferences.Editor editor = getSharedPreferences("current_game"+nameText, MODE_PRIVATE).edit();
-                editor.putString("MODE_"+Integer.toString(mode) + nameText, String.valueOf(score_cal));
+                editor.putString("MODE_"+Integer.toString(mode), String.valueOf(score_cal));
                 String wa_write = String.valueOf(wrong_answer);
                 wa_write = wa_write.substring(1,wa_write.length()-1);
                 editor.putString("MODE_"+Integer.toString(mode)+"_WAIDX", wa_write);

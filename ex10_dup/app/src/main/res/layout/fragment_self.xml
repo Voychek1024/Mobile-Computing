@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/fragment_self"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -147,16 +148,16 @@
         app:layout_constraintVertical_bias="0.897" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/mat_settings"
+        android:id="@+id/mat_about"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:text="@string/prompt_settings"
+        android:text="关于我们"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="17sp"
-        app:icon="@drawable/ic_baseline_settings_24"
+        app:icon="@drawable/ic_baseline_developer_mode_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"

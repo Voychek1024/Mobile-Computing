@@ -24,7 +24,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.button.MaterialButton;
+import com.shu_mc_03.word_town.About_us;
 import com.shu_mc_03.word_town.LoginActivity;
+import com.shu_mc_03.word_town.MainActivity;
 import com.shu_mc_03.word_town.R;
 
 import java.util.ArrayList;
@@ -66,13 +68,31 @@ public class SelfFragment extends Fragment {
         };
         timer.schedule(task, 1500);
 
-        //Show the username
+        //Show username & Login Service
         username = getActivity().getIntent().getStringExtra("username");
+        String need_guide = getActivity().getIntent().getStringExtra("guide");
         Log.d(TAG, "onCreateView() returned: " + username);
-        // Intent present = getActivity().getIntent();
-        // String username = present.getStringExtra("username");
-        // String username = "";
         TextView name = root.findViewById(R.id.self_name);
+        Button login = root.findViewById(R.id.prompt_login);
+        if(username!=null && !username.equals(""))
+        {
+            name.setText(username);
+            login.setText("切换");
+        }
+        else
+            name.setText("请登录");
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(root.getContext(), LoginActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+        if (need_guide!=null && need_guide.equals("0")) {
+            login.performClick();
+            getActivity().getIntent().removeExtra("guide");
+        }
+
 
         // Highest Score Board
         ListView listView = (ListView) root.findViewById(R.id.list_score_board);
@@ -81,14 +101,14 @@ public class SelfFragment extends Fragment {
         listView.setAdapter(adapter);
         try {
             SharedPreferences pref_cp = getContext().getSharedPreferences("current_game"+username, Context.MODE_PRIVATE);
-            mode_0_cur = pref_cp.getString("MODE_0" + username,"0");
-            mode_1_cur = pref_cp.getString("MODE_1" + username,"0");
-            mode_2_cur = pref_cp.getString("MODE_2" + username,"0");
+            mode_0_cur = pref_cp.getString("MODE_0","0");
+            mode_1_cur = pref_cp.getString("MODE_1","0");
+            mode_2_cur = pref_cp.getString("MODE_2","0");
 
             SharedPreferences pref = getContext().getSharedPreferences("total_data"+username, Context.MODE_PRIVATE);
-            mode_0 = pref.getString("MODE_0" + username, "0");
-            mode_1 = pref.getString("MODE_1" + username, "0");
-            mode_2 = pref.getString("MODE_2" + username, "0");
+            mode_0 = pref.getString("MODE_0", "0");
+            mode_1 = pref.getString("MODE_1", "0");
+            mode_2 = pref.getString("MODE_2", "0");
 
             list.clear();
             list.add("Easy Mode:\t" + (Integer.parseInt(mode_0_cur)>Integer.parseInt(mode_0)?mode_0_cur:mode_0));
@@ -96,10 +116,10 @@ public class SelfFragment extends Fragment {
             list.add("Hard Mode:\t" + (Integer.parseInt(mode_2_cur)>Integer.parseInt(mode_2)?mode_2_cur:mode_2));
             adapter.notifyDataSetChanged();
 
-            SharedPreferences.Editor editor = getContext().getSharedPreferences("total_data"+username, Context.MODE_PRIVATE).edit();
-            editor.putString("MODE_0" + username, list.get(0).substring("Easy Mode:\t".length()));
-            editor.putString("MODE_1" + username, list.get(1).substring("Normal Mode:\t".length()));
-            editor.putString("MODE_2" + username, list.get(2).substring("Hard Mode:\t".length()));
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("MODE_0", list.get(0).substring("Easy Mode:\t".length()));
+            editor.putString("MODE_1", list.get(1).substring("Normal Mode:\t".length()));
+            editor.putString("MODE_2", list.get(2).substring("Hard Mode:\t".length()));
             editor.apply();
         }
         catch (NullPointerException e) {
@@ -142,24 +162,15 @@ public class SelfFragment extends Fragment {
             }
         });
 
-        // Login Service
-        Button login = root.findViewById(R.id.prompt_login);
-        if(username!=null && !username.equals(""))
-        {
-            name.setText(username);
-            login.setText("切换");
-        }
-        else
-            name.setText("请登录");
-
-        login.setOnClickListener(new View.OnClickListener() {
+        MaterialButton about = (MaterialButton) root.findViewById(R.id.mat_about);
+        about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // present.removeExtra("username");
-                Intent intent = new Intent(root.getContext(), LoginActivity.class);
-                startActivityForResult(intent, 1);
+                Intent intent = new Intent(root.getContext(), About_us.class);
+                startActivity(intent);
             }
         });
+
         return root;
     }
 
