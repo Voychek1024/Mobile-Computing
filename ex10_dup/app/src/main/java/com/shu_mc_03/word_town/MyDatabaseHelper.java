@@ -8,8 +8,9 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,81 +20,47 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     private static final String TAG = "SQLITE DEBUG: ";
     private final Context mContext;
 
-    public static String getDBPath(Context c)
-    {
-        return Environment.getDataDirectory() +
-                File.separator + "data" +
-                File.separator + c.getPackageName() +
-                File.separator + "databases";
+    public static String getDBLocation(Context c, @Nullable String filename) {
+        if (filename == null)
+            return Environment.getDataDirectory() +
+                    File.separator + "data" +
+                    File.separator + c.getPackageName() +
+                    File.separator + "databases";
+        else
+            return Environment.getDataDirectory() +
+                    File.separator + "data" +
+                    File.separator + c.getPackageName() +
+                    File.separator + "databases" +
+                    File.separator + "Words.db";
     }
 
-    public static String getDBFileName(Context c)
-    {
-        return Environment.getDataDirectory() +
-                File.separator + "data" +
-                File.separator + c.getPackageName() +
-                File.separator + "databases" +
-                File.separator + "Words.db";
-    }
-
-    public static void createCopyOfDatabaseIfNeeded(Context c)
-    {
-        File db_dir = new File(getDBPath(c));
+    public static void copyDatabase(Context c) {
+        File db_dir = new File(getDBLocation(c, null));
         if (!db_dir.exists())
             db_dir.mkdirs();
-        File db = new File(getDBFileName(c));
+        File db = new File(getDBLocation(c, "Words.db"));
         if (!db.exists())
         {
-            // copy file from assets to db;
+            // copy Words.db from Assets to Path
             AssetManager manager = c.getAssets();
-            String[] files = null;
             try {
-                files = manager.list("");
-                for (String filename : files) {
-                    InputStream in = null;
-                    OutputStream out = null;
-                    try {
-                        in = manager.open(filename);
-                        out = new FileOutputStream(getDBFileName(c));
-                        byte[] buffer = new byte[1024];
-                        int read;
-                        while ((read = in.read(buffer)) != -1) {
-                            out.write(buffer, 0, read);
-                        }
-                    }
-                    catch (IOException e) {
-                        Log.e(TAG, "SQLITE WRITE ERR", e);
-                    }
-                    finally {
-                        if (in != null) {
-                            try {
-                                in.close();
-                            }
-                            catch (Exception e) {
-                                Log.e(TAG, "createCopyOfDatabaseIfNeeded: ERR", e);
-                            }
-                        }
-                        if (out != null) {
-                            try {
-                                out.flush();
-                                out.close();
-                            }
-                            catch (Exception e) {
-                                Log.e(TAG, "createCopyOfDatabaseIfNeeded: ERR", e);
-                            }
-                        }
-                    }
+                InputStream in = manager.open("Words.db");
+                OutputStream out = new FileOutputStream(getDBLocation(c, "Words.db"));
+                byte[] buffer = new byte[1024];
+                int read;
+                while ((read = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, read);
                 }
             }
             catch (IOException e) {
-                Log.e(TAG, "SQLITE ERR: ", e);
+                Log.e(TAG, "SQLITE WRITE ERR", e);
             }
         }
     }
 
     public MyDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
-        createCopyOfDatabaseIfNeeded(context);
+        copyDatabase(context);
         mContext = context;
     }
 

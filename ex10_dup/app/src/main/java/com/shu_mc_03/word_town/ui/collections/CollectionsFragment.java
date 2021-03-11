@@ -99,7 +99,6 @@ public class CollectionsFragment extends Fragment {
         mAdapter = new MyAdapter(dataModelList, root.getContext());
         mRecyclerView.setAdapter(mAdapter);
 
-        // TODO: Rewrite Load Del and Load Star
         // Load Del
         SharedPreferences pref_del = getContext().getSharedPreferences("del_word"+nameText, Context.MODE_PRIVATE);
         Map<String, ?> allDeletes = pref_del.getAll();
@@ -146,7 +145,6 @@ public class CollectionsFragment extends Fragment {
             for (String item : wa_idx_0) {
                 // Easy DB
                 String[] result = init_word_idx(item, 0, db);
-                // TODO: Rewrite MyAdapter: del_item / star_item store them with db_index and db_mode
                 if (!star_set.contains("0/"+item) && !del_set.contains("0/"+item)) {
                     dataModelList.add(new DataModel(result[0], result[1], false, 0, Integer.parseInt(item), nameText));
                 }

@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -67,9 +68,9 @@ public class LoginActivity extends AppCompatActivity {
             md.update(string.getBytes());
             return new BigInteger(1, md.digest()).toString(16);
         }
-        catch (Exception e) {
-            Log.e(TAG, "getMD5: ERR", e);
-            return "EOF";
+        catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return "";
         }
     }
 

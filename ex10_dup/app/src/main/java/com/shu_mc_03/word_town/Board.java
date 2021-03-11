@@ -20,6 +20,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.shu_mc_03.word_town.utils.ShotShareUtil;
@@ -150,19 +151,15 @@ public class Board extends AppCompatActivity {
 
         // Game Model implementation
         wrong_answer.clear();
-        List<String> shadow = new ArrayList<>();
         helper = new MyDatabaseHelper(getBaseContext(), "Words.db", null, 1);
         SQLiteDatabase db = helper.getReadableDatabase();
-        fisher_randomize(shadow, color, color.size());
+        fisher_randomize(null, color);
         init_words(idx_md, test, mode, db);
-        fisher_randomize(idx_md, test, test.size());
+        fisher_randomize(idx_md, test);
 
         // Animations
         explosionField = ExplosionField.attach2Window(this);
         final Animation animShake = AnimationUtils.loadAnimation(this, R.anim.shake);
-
-        Log.d(TAG, "SHUFFLED List: " + test);
-        Log.d(TAG, "Index Markdown: " + idx_md);
         int idx = 0;
         for (Button button : buttons) {
             button.setText(test.get(idx));
@@ -250,7 +247,6 @@ public class Board extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // Music Volume Control
                 float vol = (float) ((100.0 - (4.0 - progress) * 25.0) / 100.0);
-                Log.d(TAG, "onProgressChanged() returned: SOUND CONTROL: " + vol);
                 player.setVolume(vol, vol);
             }
 
@@ -268,39 +264,36 @@ public class Board extends AppCompatActivity {
 
     private void init_words(List<String> idx_md, List<String> test, int mode, SQLiteDatabase db) {
         Random r = new Random();
-        int j = 0;
         while (idx_md.size() != 16) {
             Cursor cursor = null;
             if (mode == 0) {
-                j = r.nextInt(5518 + 1);
+                int j = r.nextInt(5518 + 1);
                 cursor = db.rawQuery("SELECT t.* FROM WORD_EASY t WHERE ID=?", new String[]{String.valueOf(j)});
             }
             else if (mode == 1) {
-                j = r.nextInt(4610 + 1);
+                int j = r.nextInt(4610 + 1);
                 cursor = db.rawQuery("SELECT t.* FROM WORD_NORMAL t WHERE ID=?", new String[]{String.valueOf(j)});
             }
             else if (mode == 2) {
-                j = r.nextInt(2219 + 1);
+                int j = r.nextInt(2219 + 1);
                 cursor = db.rawQuery("SELECT t.* FROM WORD_HARD t WHERE ID=?", new String[]{String.valueOf(j)});
             }
-            if (cursor.moveToFirst()) {
-                do {
-                    String id = cursor.getString(cursor.getColumnIndex("ID"));
-                    String word = cursor.getString(cursor.getColumnIndex("NAME"));
-                    String exp = cursor.getString(cursor.getColumnIndex("EXP"));
-                    idx_md.add(id);
-                    test.add(word);
-                    idx_md.add(id);
-                    test.add(exp);
-                } while (cursor.moveToNext());
-            }
+            cursor.moveToFirst();
+            String id = cursor.getString(cursor.getColumnIndex("ID"));
+            String word = cursor.getString(cursor.getColumnIndex("NAME"));
+            String exp = cursor.getString(cursor.getColumnIndex("EXP"));
+            idx_md.add(id);
+            test.add(word);
+            idx_md.add(id);
+            test.add(exp);
             cursor.close();
         }
     }
 
-    static void fisher_randomize(List<String> idx, List<String> arr, int n) {
+    static void fisher_randomize(@Nullable List<String> idx, List<String> arr) {
         Random r = new Random();
-        if (idx.size() != 0) {
+        if (idx != null) {
+            int n = idx.size();
             for (int i = n - 1; i > 0; i--) {
                 int j = r.nextInt(i + 1);
                 String temp = arr.get(i);
@@ -312,6 +305,7 @@ public class Board extends AppCompatActivity {
             }
         }
         else {
+            int n = arr.size();
             for (int i = n - 1; i > 0; i--) {
                 int j = r.nextInt(i + 1);
                 String temp = arr.get(i);
