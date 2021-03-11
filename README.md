@@ -34,7 +34,7 @@ For details, please check each folder or specific branches <br />
 ![status](https://img.shields.io/badge/status-accepted-green)
 
 [ex09](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex09) (due 21.3.4) <br />
-![status](https://img.shields.io/badge/status-completed-%23008080)
+![status](https://img.shields.io/badge/status-accepted-green)
 
 #### ex10 Final Team Work  (Android Studio)
 
@@ -42,4 +42,4 @@ For details, please check each folder or specific branches <br />
 ![status](https://img.shields.io/badge/status-abandoned-red)
 
 [ex10_dup](https://github.com/Voychek1024/Mobile-Computing/tree/main/ex10_dup) (due 21.3.11) <br />
-![status](https://img.shields.io/badge/status-completed-%23008080)
+![status](https://img.shields.io/badge/status-accepted-green)
